@@ -1,0 +1,32 @@
+# ===============================
+# Visual Studio / .NET
+# ===============================
+
+.vs/
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache
+*.vsidx
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# ASP.NET
+*.Publish.xml
+*.pubxml
+*.pubxml.user
+
+# Logs
+*.log
+
+# OS files
+Thumbs.db
+.DS_Store
