@@ -7,3 +7,6 @@ select * from TrainingType;
 select * from AdminDocuments;
 select * from addAdminDocNames;
 select * from addEmployeeDocNames;
+
+select * from Events
+select * from EventTypes
