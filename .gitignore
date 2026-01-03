@@ -23,7 +23,6 @@ obj/
 *.Publish.xml
 *.pubxml
 *.pubxml.user
-Web.config
 
 # Logs
 *.log
@@ -31,3 +30,4 @@ Web.config
 # OS files
 Thumbs.db
 .DS_Store
+Web.config
