@@ -113,25 +113,36 @@ select*from Attendance;
    select*from Timesheets;
 
   --6.1)Admin timesheet Management approved
-        create procedure Pro_StatusAppr_Timesheets
+        alter procedure Pro_StatusAppr_Timesheets
+		 @TimesheetId INT
 		as
 		begin
 		  update Timesheets
-		  set [Status]='Approved';
+		  set [Status]='Approved'
+		  where TimesheetId = @TimesheetId;
 		end
   --6.2)Admin timesheet Management Rejected
-       create procedure Pro_StatusRejec_Timesheets
+       alter procedure Pro_StatusRejec_Timesheets
+	    @TimesheetId INT
 		as
 		begin
 		  update Timesheets
-		  set [Status]='Rejected';
+		  set [Status]='Rejected'
+		  WHERE TimesheetId = @TimesheetId;;
 		end
 
   --6.3)Admin timesheet show
-        create procedure Pro_showTimesheets
+       select*from [User];
+	   select*from Timesheets;
+    	select*from AllProjects;
+
+        alter procedure Pro_showTimesheets
 		as
 		begin
-		    select  UserId,CreatedAt,ProjectId,WorkHours,[Status] from Timesheets;
+		    select  t.TimesheetId,u.FirstName,u.LastName,t.CreatedAt,ap.ProjectName,t.WorkHours,t.[Status] 
+			from [User] u
+			join Timesheets t on u.UserId=t.UserId
+			join AllProjects ap on ap.ProjectId=t.ProjectId;
 		end
 -------------------------------------------------------------------------------------------------
 --Payroll Master Payroll
