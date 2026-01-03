@@ -67,12 +67,60 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Attendance\AddLeave.aspx" />
+    <Content Include="Admin\Attendance\Attendance.aspx" />
+    <Content Include="Admin\Attendance\AttendanceAdmin.aspx" />
+    <Content Include="Admin\Attendance\DepartmentLeaveShow.aspx" />
+    <Content Include="Admin\Attendance\ManageLeavesetting.aspx" />
+    <Content Include="Admin\Attendance\Timesheet.aspx" />
     <Content Include="Auth\Login.aspx" />
     <Content Include="Scripts\sidebar.js" />
     <Content Include="Styles\sidebar.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Attendance\AddLeave.aspx.cs">
+      <DependentUpon>AddLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Attendance\AddLeave.aspx.designer.cs">
+      <DependentUpon>AddLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Attendance\Attendance.aspx.cs">
+      <DependentUpon>Attendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Attendance\Attendance.aspx.designer.cs">
+      <DependentUpon>Attendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Attendance\AttendanceAdmin.aspx.cs">
+      <DependentUpon>AttendanceAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Attendance\AttendanceAdmin.aspx.designer.cs">
+      <DependentUpon>AttendanceAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Attendance\DepartmentLeaveShow.aspx.cs">
+      <DependentUpon>DepartmentLeaveShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Attendance\DepartmentLeaveShow.aspx.designer.cs">
+      <DependentUpon>DepartmentLeaveShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Attendance\ManageLeavesetting.aspx.cs">
+      <DependentUpon>ManageLeavesetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Attendance\ManageLeavesetting.aspx.designer.cs">
+      <DependentUpon>ManageLeavesetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Attendance\Timesheet.aspx.cs">
+      <DependentUpon>Timesheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Attendance\Timesheet.aspx.designer.cs">
+      <DependentUpon>Timesheet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Auth\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -82,18 +130,21 @@
     </Compile>
     <Compile Include="Masters\AdminMaster.Master.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Masters\AdminMaster.Master.designer.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="Masters\EmployeeMaster.Master.cs">
       <DependentUpon>EmployeeMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Masters\EmployeeMaster.Master.designer.cs">
       <DependentUpon>EmployeeMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="Masters\ManagerMaster.Master.cs">
       <DependentUpon>ManagerMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Masters\ManagerMaster.Master.designer.cs">
       <DependentUpon>ManagerMaster.Master</DependentUpon>
@@ -114,7 +165,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Admin\" />
     <Folder Include="Employee\" />
     <Folder Include="Manager\" />
   </ItemGroup>
