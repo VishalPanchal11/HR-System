@@ -1,56 +1,81 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Admin.Master" AutoEventWireup="true" CodeBehind="Resignation.aspx.cs" Inherits="HR_System.Admin.WebForm1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="~/Content/resignation.css" rel="stylesheet" />
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="card">
-    <h2>Employee Resignation</h2>
+﻿<%@ Page Title="Resignation"
+    Language="C#"
+    MasterPageFile="~/Masters/Admin.Master"
+    AutoEventWireup="true"
+    CodeBehind="Resignation.aspx.cs"
+    Inherits="HR_System.Admin.Resignation" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<link href="~/Content/resignation.css" rel="stylesheet" />
+
+<div class="container mt-4">
+
+    <h3 class="mb-4">Employee Resignation</h3>
 
     <asp:HiddenField ID="hfResignationID" runat="server" />
 
-    <label>User ID</label>
-    <asp:TextBox ID="txtUserID" runat="server" CssClass="input" />
+    <div class="card mb-4">
+        <div class="card-body">
 
-    <label>Department ID</label>
-    <asp:TextBox ID="txtDeptID" runat="server" CssClass="input" />
+            <div class="row g-3">
 
-    <label>Notice Date</label>
-    <asp:TextBox ID="txtNoticeDate" runat="server" TextMode="Date" CssClass="input" />
+                <div class="col-md-4">
+                    <label>User ID</label>
+                    <asp:TextBox ID="txtUserId" runat="server" CssClass="form-control" />
+                </div>
 
-    <label>Resign Date</label>
-    <asp:TextBox ID="txtResignDate" runat="server" TextMode="Date" CssClass="input" />
+                <div class="col-md-4">
+                    <label>Department ID</label>
+                    <asp:TextBox ID="txtDepartmentId" runat="server" CssClass="form-control" />
+                </div>
 
-    <label>Reason</label>
-    <asp:TextBox ID="txtReason" runat="server" TextMode="MultiLine" CssClass="textarea" />
+                <div class="col-md-4">
+                    <label>Notice Date</label>
+                    <asp:TextBox ID="txtNoticeDate" runat="server" TextMode="Date" CssClass="form-control" />
+                </div>
 
-    <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn"
-        OnClick="btnSave_Click" />
+                <div class="col-md-4">
+                    <label>Resign Date</label>
+                    <asp:TextBox ID="txtResignDate" runat="server" TextMode="Date" CssClass="form-control" />
+                </div>
+
+                <div class="col-md-8">
+                    <label>Reason</label>
+                    <asp:TextBox ID="txtReason" runat="server" TextMode="MultiLine" Rows="3"
+                        CssClass="form-control" />
+                </div>
+
+                <div class="col-12 text-end">
+                    <asp:Button ID="btnSave" runat="server"
+                        Text="Save"
+                        CssClass="btn btn-primary"
+                        OnClick="btnSave_Click" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <asp:GridView ID="gvResignation"
+        runat="server"
+        CssClass="table table-bordered table-striped"
+        AutoGenerateColumns="False"
+        DataKeyNames="ResignationID"
+        OnRowDeleting="gvResignation_RowDeleting"
+        OnSelectedIndexChanged="gvResignation_SelectedIndexChanged">
+
+        <Columns>
+            <asp:CommandField ShowSelectButton="True" />
+            <asp:BoundField DataField="ResignationID" HeaderText="ID" />
+            <asp:BoundField DataField="UserID" HeaderText="User ID" />
+            <asp:BoundField DataField="DepartmentId" HeaderText="Department" />
+            <asp:BoundField DataField="NoticeDate" HeaderText="Notice Date" DataFormatString="{0:yyyy-MM-dd}" />
+            <asp:BoundField DataField="ResignDate" HeaderText="Resign Date" DataFormatString="{0:yyyy-MM-dd}" />
+            <asp:BoundField DataField="Reason" HeaderText="Reason" />
+            <asp:CommandField ShowDeleteButton="True" />
+        </Columns>
+
+    </asp:GridView>
+
 </div>
-
-<hr />
-
-<asp:GridView ID="gvResignation" runat="server" AutoGenerateColumns="false"
-    CssClass="grid" OnRowCommand="gvResignation_RowCommand">
-    <Columns>
-        <asp:BoundField DataField="ResignationID" HeaderText="ID" />
-        <asp:BoundField DataField="UserID" HeaderText="User" />
-        <asp:BoundField DataField="DepartmentId" HeaderText="Department" />
-        <asp:BoundField DataField="NoticeDate" HeaderText="Notice Date" />
-        <asp:BoundField DataField="ResignDate" HeaderText="Resign Date" />
-        <asp:BoundField DataField="Reason" HeaderText="Reason" />
-
-        <asp:TemplateField HeaderText="Action">
-            <ItemTemplate>
-                <asp:Button ID="btnDelete"
-                    runat="server"
-                    Text="Delete"
-                    CssClass="btn"
-                    CommandName="del"
-                    CommandArgument='<%# Eval("ResignationID") %>'
-                    OnClientClick="return confirm('Are you sure you want to delete?');" />
-            </ItemTemplate>
-        </asp:TemplateField>
-
-    </Columns>
-</asp:GridView>
 </asp:Content>

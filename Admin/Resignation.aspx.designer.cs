@@ -11,7 +11,7 @@ namespace HR_System.Admin
 {
 
 
-    public partial class WebForm1
+    public partial class Resignation
     {
 
         /// <summary>
@@ -24,22 +24,22 @@ namespace HR_System.Admin
         protected global::System.Web.UI.WebControls.HiddenField hfResignationID;
 
         /// <summary>
-        /// txtUserID control.
+        /// txtUserId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserID;
+        protected global::System.Web.UI.WebControls.TextBox txtUserId;
 
         /// <summary>
-        /// txtDeptID control.
+        /// txtDepartmentId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDeptID;
+        protected global::System.Web.UI.WebControls.TextBox txtDepartmentId;
 
         /// <summary>
         /// txtNoticeDate control.
