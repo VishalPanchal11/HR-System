@@ -23,6 +23,7 @@ obj/
 *.Publish.xml
 *.pubxml
 *.pubxml.user
+Web.config
 
 # Logs
 *.log
