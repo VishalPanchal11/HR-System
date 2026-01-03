@@ -1,4 +1,4 @@
-
+use Pulse360_FinalDb;
 
 select *  from [User];
 -- user procs
@@ -9,6 +9,7 @@ select * from TrainingType;
 select * from AdminDocuments;
 select * from addAdminDocNames;
 select * from addEmployeeDocNames;
+select * from [Role];
 
 
 --Siddhesh Module
