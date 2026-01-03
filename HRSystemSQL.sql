@@ -10,13 +10,17 @@ select * from AdminDocuments;
 select * from addAdminDocNames;
 select * from addEmployeeDocNames;
 
+<<<<<<< HEAD
 --Dheeraj Module
 --Admin 
+=======
+>>>>>>> 9964774111d34aeccbd4eb8435f06ddf9c2bd22a
 <<<<<<< HEAD
 select * from Events
 select * from EventTypes
 =======
 
+<<<<<<< HEAD
 create procedure Pro_EventType
 @Name nvarchar(50),
 @Color nvarchar(20) 
@@ -71,6 +75,8 @@ end
 
 
 
+=======
+>>>>>>> 9964774111d34aeccbd4eb8435f06ddf9c2bd22a
 --Siddhesh Module
 --Admin
 --1) Adding leave type
