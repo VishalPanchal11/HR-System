@@ -73,6 +73,7 @@
     <Content Include="Admin\Attendance\DepartmentLeaveShow.aspx" />
     <Content Include="Admin\Attendance\ManageLeavesetting.aspx" />
     <Content Include="Admin\Attendance\Timesheet.aspx" />
+    <Content Include="Admin\Resignation\Resignation.aspx" />
     <Content Include="Auth\Login.aspx" />
     <Content Include="Scripts\sidebar.js" />
     <Content Include="Styles\sidebar.css" />
@@ -120,6 +121,13 @@
     </Compile>
     <Compile Include="Admin\Attendance\Timesheet.aspx.designer.cs">
       <DependentUpon>Timesheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Resignation\Resignation.aspx.cs">
+      <DependentUpon>Resignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Resignation\Resignation.aspx.designer.cs">
+      <DependentUpon>Resignation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Auth\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
