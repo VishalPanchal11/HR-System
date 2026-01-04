@@ -467,3 +467,9 @@ select*from MasterLeaveTypes;
 
 select*from LeaveBalances;
 
+--------------Ramtialk Yadav Project module 
+select * from AllProjects;
+Select * from Task;
+select * from Taskmember;
+select * from ProjectsUser;
+select * from [User];

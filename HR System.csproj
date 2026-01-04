@@ -74,8 +74,12 @@
     <Content Include="Admin\Attendance\ManageLeavesetting.aspx" />
     <Content Include="Admin\Attendance\Timesheet.aspx" />
     <Content Include="Auth\Login.aspx" />
+    <Content Include="EditProject.aspx" />
+    <Content Include="Project.aspx" />
+    <Content Include="ProjectList.aspx" />
     <Content Include="Scripts\sidebar.js" />
     <Content Include="Styles\sidebar.css" />
+    <Content Include="TaskList.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +132,13 @@
     <Compile Include="Auth\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EditProject.aspx.cs">
+      <DependentUpon>EditProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditProject.aspx.designer.cs">
+      <DependentUpon>EditProject.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Masters\AdminMaster.Master.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -149,7 +160,28 @@
     <Compile Include="Masters\ManagerMaster.Master.designer.cs">
       <DependentUpon>ManagerMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="Project.aspx.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Project.aspx.designer.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectList.aspx.cs">
+      <DependentUpon>ProjectList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectList.aspx.designer.cs">
+      <DependentUpon>ProjectList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskList.aspx.cs">
+      <DependentUpon>TaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TaskList.aspx.designer.cs">
+      <DependentUpon>TaskList.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="libman.json" />

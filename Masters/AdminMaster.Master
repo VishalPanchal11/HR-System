@@ -1,4 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="HR_System.Masters.AdminMaster" %>
+﻿
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="HR_System.Masters.AdminMaster" %>
 <!DOCTYPE html>
 <html>
 <head runat="server">
@@ -7,7 +8,11 @@
     <script src="../Scripts/sidebar.js"></script>
 </head>
 <body>
-<form runat="server">
+<form runat="server"><asp:ScriptManager 
+    ID="ScriptManager1" 
+    runat="server" 
+    EnablePartialRendering="true" />
+
 
 <div class="wrapper">
     <div id="sidebar" class="sidebar">
