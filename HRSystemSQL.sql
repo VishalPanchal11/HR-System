@@ -456,3 +456,210 @@ select*from MasterLeaveTypes;
 
 select*from LeaveBalances;
 
+----------------------------------------SB Module------------------------------------------------------------------
+--INSERT Stored Procedure--
+--sp_Resignation_Create--
+CREATE PROCEDURE sp_Resignation_Create
+(
+    @UserID INT,
+    @DepartmentId INT,
+    @NoticeDate DATETIME2(7),
+    @ResignDate DATETIME2(7),
+    @Reason NVARCHAR(500)
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO Resignation
+    (
+        UserID,
+        DepartmentId,
+        NoticeDate,
+        ResignDate,
+        Reason
+    )
+    VALUES
+    (
+        @UserID,
+        @DepartmentId,
+        @NoticeDate,
+        @ResignDate,
+        @Reason
+    );
+END
+GO
+
+---SELECT (LIST) Stored Procedure---
+-- Used for GridView --
+--sp_Resignation_GetList--
+CREATE PROCEDURE sp_Resignation_GetList
+(
+    @Search NVARCHAR(100) = NULL,
+    @SortOrder NVARCHAR(10) = NULL,   -- ASC / DESC
+    @FromDate DATETIME2(7) = NULL,
+    @ToDate DATETIME2(7) = NULL
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        R.ResignationID,
+        R.UserID,
+        R.DepartmentId,
+        R.NoticeDate,
+        R.ResignDate,
+        R.Reason
+    FROM Resignation R
+    WHERE
+        (@Search IS NULL OR R.Reason LIKE '%' + @Search + '%')
+        AND (@FromDate IS NULL OR R.ResignDate >= @FromDate)
+        AND (@ToDate IS NULL OR R.ResignDate <= @ToDate)
+    ORDER BY
+        CASE WHEN @SortOrder = 'ASC' THEN R.ResignDate END ASC,
+        CASE WHEN @SortOrder = 'DESC' THEN R.ResignDate END DESC;
+END
+GO
+----SELECT BY ID (Edit Page)---
+--sp_Resignation_GetById--
+
+CREATE PROCEDURE sp_Resignation_GetById
+(
+    @ResignationID INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT *
+    FROM Resignation
+    WHERE ResignationID = @ResignationID;
+END
+GO
+---UPDATE Stored Procedure---
+--sp_Resignation_Update--
+CREATE PROCEDURE sp_Resignation_Update
+(
+    @ResignationID INT,
+    @DepartmentId INT,
+    @NoticeDate DATETIME2(7),
+    @ResignDate DATETIME2(7),
+    @Reason NVARCHAR(500)
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Resignation
+    SET
+        DepartmentId = @DepartmentId,
+        NoticeDate = @NoticeDate,
+        ResignDate = @ResignDate,
+        Reason = @Reason
+    WHERE ResignationID = @ResignationID;
+END
+GO
+
+---DELETE Stored Procedure---
+--sp_Resignation_Remove--
+CREATE PROCEDURE sp_Resignation_Remove
+(
+    @ResignationID INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM Resignation
+    WHERE ResignationID = @ResignationID;
+END
+GO
+
+---Trigger 1: Validate ResignDate > NoticeDate---
+CREATE TRIGGER trg_Resignation_DateValidation
+ON Resignation
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS
+    (
+        SELECT 1
+        FROM inserted
+        WHERE ResignDate <= NoticeDate
+    )
+    BEGIN
+        RAISERROR ('Resignation Date must be greater than Notice Date.', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END
+GO
+
+---trigger 2: Audit Log (Optional but Professional)---
+
+CREATE TABLE Resignation_Audit
+(
+    AuditID INT IDENTITY PRIMARY KEY,
+    ResignationID INT,
+    ActionType NVARCHAR(20),
+    ActionDate DATETIME DEFAULT GETDATE()
+)
+
+---Trigger---
+
+CREATE TRIGGER trg_Resignation_Audit
+ON Resignation
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted)
+    BEGIN
+        INSERT INTO Resignation_Audit (ResignationID, ActionType)
+        SELECT ResignationID, 'INSERT / UPDATE'
+        FROM inserted
+    END
+
+    IF EXISTS (SELECT * FROM deleted)
+    BEGIN
+        INSERT INTO Resignation_Audit (ResignationID, ActionType)
+        SELECT ResignationID, 'DELETE'
+        FROM deleted
+    END
+END
+GO
+
+-----------
+ALTER PROCEDURE sp_Resignation_Create
+(
+    @UserID INT,
+    @DepartmentId INT,
+    @NoticeDate DATETIME2(7),
+    @ResignDate DATETIME2(7),
+    @Reason NVARCHAR(500)
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO Resignation
+    (
+        UserID,
+        DepartmentId,
+        NoticeDate,
+        ResignDate,
+        Reason
+    )
+    VALUES
+    (
+        @UserID,
+        @DepartmentId,
+        @NoticeDate,
+        @ResignDate,
+        @Reason
+    );
+END
+GO
+
+
+
+select * from Resignation;
