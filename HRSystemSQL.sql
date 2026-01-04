@@ -663,3 +663,137 @@ GO
 
 
 select * from Resignation;
+
+
+----------Promotion------------
+
+
+--PromotionID(PK,int,not null)
+--UsersID(FK,int,not null)
+--DesignationFrom(nvarchar(100),not null)
+--DesignationTo(nvarchar(100),not null)
+--Date(datetime2(7),not null)--
+
+---Save (Insert / Update)----
+USE Pulse360_FinalDb;
+GO
+CREATE PROCEDURE dbo.usp_Promotion_Save
+(
+    @PromotionId INT,
+    @UserID INT,
+    @DesignationFrom NVARCHAR(100),
+    @DesignationTo NVARCHAR(100),
+    @Date DATETIME2
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @PromotionId = 0
+    BEGIN
+        INSERT INTO dbo.Promotion
+        (
+            UserID,
+            DesignationFrom,
+            DesignationTo,
+            Date
+        )
+        VALUES
+        (
+            @UserID,
+            @DesignationFrom,
+            @DesignationTo,
+            @Date
+        );
+    END
+    ELSE
+    BEGIN
+        UPDATE dbo.Promotion
+        SET
+            UserID = @UserID,
+            DesignationFrom = @DesignationFrom,
+            DesignationTo = @DesignationTo,
+            Date = @Date
+        WHERE PromotionId = @PromotionId;
+    END
+END;
+GO
+
+
+-----usp_Promotion_GetAll ---------
+CREATE PROCEDURE dbo.usp_Promotion_GetAll
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        p.PromotionId,
+        p.UserID,
+        u.EmployeeName,
+        p.DesignationFrom,
+        p.DesignationTo,
+        p.Date
+    FROM dbo.Promotion p
+    INNER JOIN dbo.Users u
+        ON u.UserID = p.UserID
+    ORDER BY p.Date DESC;
+END;
+GO
+
+
+-----Get By ID — usp_Promotion_GetById---
+CREATE PROCEDURE dbo.usp_Promotion_GetById
+(
+    @PromotionId INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        PromotionId,
+        UserID,
+        DesignationFrom,
+        DesignationTo,
+        Date
+    FROM dbo.Promotion
+    WHERE PromotionId = @PromotionId;
+END;
+GO
+
+
+----Delete — usp_Promotion_Delete-----
+CREATE PROCEDURE dbo.usp_Promotion_Delete
+(
+    @PromotionId INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM dbo.Promotion
+    WHERE PromotionId = @PromotionId;
+END;
+GO
+
+
+
+-----------CREATE TRIGGER dbo.trg_Promotion_UpdateUserDesignation----------
+CREATE TRIGGER dbo.trg_Promotion_UpdateUserDesignation
+ON dbo.Promotion
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE u
+    SET u.Designation = i.DesignationTo
+    FROM dbo.Users u
+    INNER JOIN inserted i
+        ON u.UserID = i.UserID;
+END;
+GO
+
+SELECT name FROM sys.tables;
+select * from User;
+SELECT * FROM [User];
