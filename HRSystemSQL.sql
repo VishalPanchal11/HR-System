@@ -42,3 +42,9 @@ select*from [User];
 
 
 >>>>>>> 90c677be47ae38f2e575c343a842c4eb354b3ae9
+--------------Ramtialk Yadav Project module 
+select * from AllProjects;
+Select * from Task;
+select * from Taskmember;
+select * from ProjectsUser;
+select * from [User];
