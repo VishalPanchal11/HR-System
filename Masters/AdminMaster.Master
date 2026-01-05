@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true"
+<%@ Master Language="C#" AutoEventWireup="true"
     CodeBehind="AdminMaster.master.cs"
     Inherits="HR_System.Masters.AdminMaster" %>
 
