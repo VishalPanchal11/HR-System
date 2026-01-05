@@ -74,6 +74,8 @@
     <Content Include="Admin\Attendance\ManageLeavesetting.aspx" />
     <Content Include="Admin\Attendance\Timesheet.aspx" />
     <Content Include="Admin\Promotion\Promotion.aspx" />
+    <Content Include="Admin\Promotion\Promotion.css" />
+    <Content Include="Admin\Promotion\Promotion.html" />
     <Content Include="Admin\Resignation\Resignation.aspx" />
     <Content Include="Admin\Termination\Termination.aspx" />
     <Content Include="Auth\Login.aspx" />

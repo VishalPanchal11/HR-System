@@ -675,125 +675,292 @@ select * from Resignation;
 --Date(datetime2(7),not null)--
 
 ---Save (Insert / Update)----
+
+DROP TABLE IF EXISTS Promotion1;
 USE Pulse360_FinalDb;
 GO
-CREATE PROCEDURE dbo.usp_Promotion_Save
+CREATE PROCEDURE sp_Promotion_Insert
 (
-    @PromotionId INT,
-    @UserID INT,
+    @EmployeeName NVARCHAR(150),
     @DesignationFrom NVARCHAR(100),
     @DesignationTo NVARCHAR(100),
-    @Date DATETIME2
+    @PromotionDate DATETIME2
 )
 AS
 BEGIN
-    SET NOCOUNT ON;
+    INSERT INTO Promotion
+    (EmployeeName, DesignationFrom, DesignationTo, PromotionDate)
+    VALUES
+    (@EmployeeName, @DesignationFrom, @DesignationTo, @PromotionDate);
+END
+SELECT COLUMN_NAME
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'Promotion';
 
-    IF @PromotionId = 0
-    BEGIN
-        INSERT INTO dbo.Promotion
-        (
-            UserID,
-            DesignationFrom,
-            DesignationTo,
-            Date
-        )
-        VALUES
-        (
-            @UserID,
-            @DesignationFrom,
-            @DesignationTo,
-            @Date
-        );
-    END
-    ELSE
-    BEGIN
-        UPDATE dbo.Promotion
-        SET
-            UserID = @UserID,
-            DesignationFrom = @DesignationFrom,
-            DesignationTo = @DesignationTo,
-            Date = @Date
-        WHERE PromotionId = @PromotionId;
-    END
-END;
+DROP TABLE IF EXISTS Promotion;
 GO
 
+DROP TABLE IF EXISTS Promotion1;
 
------usp_Promotion_GetAll ---------
-CREATE PROCEDURE dbo.usp_Promotion_GetAll
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    SELECT
-        p.PromotionId,
-        p.UserID,
-        u.EmployeeName,
-        p.DesignationFrom,
-        p.DesignationTo,
-        p.Date
-    FROM dbo.Promotion p
-    INNER JOIN dbo.Users u
-        ON u.UserID = p.UserID
-    ORDER BY p.Date DESC;
-END;
-GO
-
-
------Get By ID — usp_Promotion_GetById---
-CREATE PROCEDURE dbo.usp_Promotion_GetById
+create TABLE Promotion
 (
-    @PromotionId INT
-)
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    SELECT
-        PromotionId,
-        UserID,
-        DesignationFrom,
-        DesignationTo,
-        Date
-    FROM dbo.Promotion
-    WHERE PromotionId = @PromotionId;
-END;
-GO
-
-
-----Delete — usp_Promotion_Delete-----
-CREATE PROCEDURE dbo.usp_Promotion_Delete
+    PromotionID INT IDENTITY(1,1) PRIMARY KEY,
+    EmployeeName NVARCHAR(150) NOT NULL,
+    DesignationFrom NVARCHAR(100) NOT NULL,
+    DesignationTo NVARCHAR(100) NOT NULL,
+    PromotionDate DATETIME2(7) NOT NULL
+);
+DROP PROCEDURE sp_Promotion_Insert;
+CREATE OR ALTER PROCEDURE sp_Promotion_Insert
 (
-    @PromotionId INT
+    @EmployeeName NVARCHAR(150),
+    @DesignationFrom NVARCHAR(100),
+    @DesignationTo NVARCHAR(100),
+    @PromotionDate DATETIME2
 )
 AS
 BEGIN
-    SET NOCOUNT ON;
-
-    DELETE FROM dbo.Promotion
-    WHERE PromotionId = @PromotionId;
-END;
-GO
+    INSERT INTO Promotion
+    VALUES (@EmployeeName, @DesignationFrom, @DesignationTo, @PromotionDate);
+END
 
 
-
------------CREATE TRIGGER dbo.trg_Promotion_UpdateUserDesignation----------
-CREATE TRIGGER dbo.trg_Promotion_UpdateUserDesignation
-ON dbo.Promotion
+drop trigger trg_Promotion_Validate;
+CREATE OR ALTER TRIGGER trg_Promotion_Validate
+ON Promotion
 AFTER INSERT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    IF EXISTS (
+        SELECT 1 FROM inserted
+        WHERE DesignationFrom = DesignationTo
+    )
+    BEGIN
+        RAISERROR('From and To Designation cannot be same',16,1);
+        ROLLBACK TRANSACTION;
+    END
+END;
 
-    UPDATE u
-    SET u.Designation = i.DesignationTo
-    FROM dbo.Users u
-    INNER JOIN inserted i
-        ON u.UserID = i.UserID;
+
+----Update Promotion---
+
+drop procedure sp_Promotion_Update;
+CREATE OR ALTER PROCEDURE sp_Promotion_Update
+(
+    @PromotionID INT,
+    @EmployeeName NVARCHAR(150),
+    @DesignationFrom NVARCHAR(100),
+    @DesignationTo NVARCHAR(100),
+    @PromotionDate DATETIME2
+)
+AS
+BEGIN
+    UPDATE Promotion
+    SET EmployeeName = @EmployeeName,
+        DesignationFrom = @DesignationFrom,
+        DesignationTo = @DesignationTo,
+        PromotionDate = @PromotionDate
+    WHERE PromotionID = @PromotionID;
+END
+GO
+
+----Delete Promotion---
+
+drop procedure sp_Promotion_Delete;
+CREATE OR ALTER PROCEDURE sp_Promotion_Delete
+(
+    @PromotionID INT
+)
+AS
+BEGIN
+    DELETE FROM Promotion WHERE PromotionID = @PromotionID;
+END
+----Select/List Promotions (with Search, Sort, Date Filter)---
+
+drop procedure sp_Promotion_GetAll;
+CREATE OR ALTER PROCEDURE sp_Promotion_GetAll
+(
+    @SearchEmployee NVARCHAR(150) = NULL,
+    @FromDate DATETIME2 = NULL,
+    @ToDate DATETIME2 = NULL,
+    @SortColumn NVARCHAR(50) = 'PromotionDate',
+    @SortOrder NVARCHAR(4) = 'DESC'  -- 'ASC' or 'DESC'
+)
+AS
+BEGIN
+    DECLARE @SQL NVARCHAR(MAX);
+
+    SET @SQL = N'SELECT PromotionID, EmployeeName, DesignationFrom, DesignationTo, PromotionDate
+                 FROM Promotion
+                 WHERE 1=1';
+
+    -- Filter by Employee Name
+    IF @SearchEmployee IS NOT NULL AND @SearchEmployee <> ''
+        SET @SQL += N' AND EmployeeName LIKE ''%'' + @SearchEmployee + ''%''';
+
+    -- Filter by date range
+    IF @FromDate IS NOT NULL
+        SET @SQL += N' AND PromotionDate >= @FromDate';
+    IF @ToDate IS NOT NULL
+        SET @SQL += N' AND PromotionDate <= @ToDate';
+
+    -- Sorting
+    SET @SQL += N' ORDER BY ' + QUOTENAME(@SortColumn) + ' ' + @SortOrder;
+
+    EXEC sp_executesql @SQL,
+        N'@SearchEmployee NVARCHAR(150), @FromDate DATETIME2, @ToDate DATETIME2',
+        @SearchEmployee=@SearchEmployee, @FromDate=@FromDate, @ToDate=@ToDate;
+END
+GO
+
+CREATE OR ALTER PROCEDURE sp_Promotion_GetById
+(
+    @PromotionID INT
+)
+AS
+BEGIN
+    SELECT * FROM Promotion WHERE PromotionID = @PromotionID;
+END
+
+--------Termination-----------
+--TerminationId(PK,INT,not null)
+--useID(FK,int,not nul)
+--TerminationType(nvarchar(100),not null)
+--NoticeDate(datetime2(7),not null)
+--ResignDate(datetime2(7),not null)
+--Reason(nvarchar(500),not null)
+
+USE Pulse360_FinalDb;
+GO
+
+DROP TABLE IF EXISTS Termination;
+GO
+
+CREATE TABLE Termination
+(
+    TerminationId INT IDENTITY(1,1) PRIMARY KEY,
+    UserID INT NOT NULL,   -- FK ? Users table
+    TerminationType NVARCHAR(100) NOT NULL,
+    NoticeDate DATETIME2(7) NOT NULL,
+    ResignDate DATETIME2(7) NOT NULL,
+    Reason NVARCHAR(500) NOT NULL
+);
+GO
+
+---TRIGGER (VALIDATION)
+
+CREATE OR ALTER TRIGGER trg_Termination_Validate
+ON Termination
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (
+        SELECT 1 FROM inserted
+        WHERE NoticeDate > ResignDate
+    )
+    BEGIN
+        RAISERROR('Notice Date cannot be greater than Resign Date',16,1);
+        ROLLBACK TRANSACTION;
+    END
+END;
+
+---INSERT------
+CREATE OR ALTER PROCEDURE sp_Termination_Insert
+(
+    @UserID INT,
+    @TerminationType NVARCHAR(100),
+    @NoticeDate DATETIME2,
+    @ResignDate DATETIME2,
+    @Reason NVARCHAR(500)
+)
+AS
+BEGIN
+    INSERT INTO Termination
+    (UserID, TerminationType, NoticeDate, ResignDate, Reason)
+    VALUES
+    (@UserID, @TerminationType, @NoticeDate, @ResignDate, @Reason);
+END;
+GO
+GO
+
+---Update---
+CREATE OR ALTER PROCEDURE sp_Termination_Update
+(
+    @TerminationId INT,
+    @UserID INT,
+    @TerminationType NVARCHAR(100),
+    @NoticeDate DATETIME2,
+    @ResignDate DATETIME2,
+    @Reason NVARCHAR(500)
+)
+AS
+BEGIN
+    UPDATE Termination
+    SET
+        UserID = @UserID,
+        TerminationType = @TerminationType,
+        NoticeDate = @NoticeDate,
+        ResignDate = @ResignDate,
+        Reason = @Reason
+    WHERE TerminationId = @TerminationId;
 END;
 GO
 
-SELECT name FROM sys.tables;
-select * from User;
-SELECT * FROM [User];
+----DELETE----
+CREATE OR ALTER PROCEDURE sp_Termination_Delete
+(
+    @TerminationId INT
+)
+AS
+BEGIN
+    DELETE FROM Termination
+    WHERE TerminationId = @TerminationId;
+END;
+GO
+
+----GET BY ID (Edit)----
+CREATE OR ALTER PROCEDURE sp_Termination_GetById
+(
+    @TerminationId INT
+)
+AS
+BEGIN
+    SELECT * FROM Termination
+    WHERE TerminationId = @TerminationId;
+END;
+GO
+
+----LIST / SEARCH / SORT (LIKE PROMOTION)---
+CREATE OR ALTER PROCEDURE sp_Termination_GetAll
+(
+    @SearchType NVARCHAR(100) = NULL,
+    @FromDate DATETIME2 = NULL,
+    @ToDate DATETIME2 = NULL,
+    @SortColumn NVARCHAR(50) = 'ResignDate',
+    @SortOrder NVARCHAR(4) = 'DESC'
+)
+AS
+BEGIN
+    DECLARE @SQL NVARCHAR(MAX);
+
+    SET @SQL = N'
+        SELECT TerminationId, UserID, TerminationType, NoticeDate, ResignDate, Reason
+        FROM Termination
+        WHERE 1=1';
+
+    IF @SearchType IS NOT NULL AND @SearchType <> ''
+        SET @SQL += N' AND TerminationType LIKE ''%'' + @SearchType + ''%''';
+
+    IF @FromDate IS NOT NULL
+        SET @SQL += N' AND ResignDate >= @FromDate';
+
+    IF @ToDate IS NOT NULL
+        SET @SQL += N' AND ResignDate <= @ToDate';
+
+    SET @SQL += N' ORDER BY ' + QUOTENAME(@SortColumn) + ' ' + @SortOrder;
+
+    EXEC sp_executesql @SQL,
+        N'@SearchType NVARCHAR(100), @FromDate DATETIME2, @ToDate DATETIME2',
+        @SearchType=@SearchType, @FromDate=@FromDate, @ToDate=@ToDate;
+END;
+GO

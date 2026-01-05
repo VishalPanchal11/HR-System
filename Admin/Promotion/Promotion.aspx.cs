@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace HR_System.Admin.Promotion
 {
@@ -9,24 +12,17 @@ namespace HR_System.Admin.Promotion
     {
         private string connStr = ConfigurationManager.ConnectionStrings["HRdbCon"].ConnectionString;
 
-        private string SortColumn
-        {
-            get { return ViewState["SortColumn"]?.ToString() ?? "PromotionDate"; }
-            set { ViewState["SortColumn"] = value; }
-        }
-
-        private string SortDirection
-        {
-            get { return ViewState["SortDirection"]?.ToString() ?? "DESC"; }
-            set { ViewState["SortDirection"] = value; }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 BindGrid();
             }
+        }
+
+        protected void FilterChanged(object sender, EventArgs e)
+        {
+            BindGrid();
         }
 
         private void BindGrid()
@@ -37,10 +33,20 @@ namespace HR_System.Admin.Promotion
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@SearchEmployee", txtSearchEmployee.Text.Trim());
-                    cmd.Parameters.AddWithValue("@FromDate", string.IsNullOrEmpty(txtFromDate.Text) ? (object)DBNull.Value : DateTime.Parse(txtFromDate.Text));
-                    cmd.Parameters.AddWithValue("@ToDate", string.IsNullOrEmpty(txtToDate.Text) ? (object)DBNull.Value : DateTime.Parse(txtToDate.Text));
-                    cmd.Parameters.AddWithValue("@SortColumn", SortColumn);
-                    cmd.Parameters.AddWithValue("@SortOrder", SortDirection);
+
+                    if (ddlDateFilter.SelectedValue == "Today")
+                    {
+                        cmd.Parameters.AddWithValue("@FromDate", DateTime.Today);
+                        cmd.Parameters.AddWithValue("@ToDate", DateTime.Today.AddHours(23).AddMinutes(59));
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@FromDate", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@ToDate", DBNull.Value);
+                    }
+
+                    cmd.Parameters.AddWithValue("@SortColumn", "PromotionDate");
+                    cmd.Parameters.AddWithValue("@SortOrder", ddlSort.SelectedValue);
 
                     conn.Open();
                     gvPromotion.DataSource = cmd.ExecuteReader();
@@ -53,13 +59,12 @@ namespace HR_System.Admin.Promotion
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                using (SqlCommand cmd = new SqlCommand(
-                    hfPromotionID.Value == "" ? "sp_Promotion_Insert" : "sp_Promotion_Update", conn))
+                string proc = string.IsNullOrEmpty(hfPromotionID.Value) ? "sp_Promotion_Insert" : "sp_Promotion_Update";
+                using (SqlCommand cmd = new SqlCommand(proc, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     if (!string.IsNullOrEmpty(hfPromotionID.Value))
-                        cmd.Parameters.AddWithValue("@PromotionID", int.Parse(hfPromotionID.Value));
+                        cmd.Parameters.AddWithValue("@PromotionID", hfPromotionID.Value);
 
                     cmd.Parameters.AddWithValue("@EmployeeName", txtEmployeeName.Text.Trim());
                     cmd.Parameters.AddWithValue("@DesignationFrom", txtFrom.Text.Trim());
@@ -70,9 +75,14 @@ namespace HR_System.Admin.Promotion
                     cmd.ExecuteNonQuery();
                 }
             }
-
             ClearForm();
             BindGrid();
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+            pnlForm.Visible = true;
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
@@ -89,10 +99,9 @@ namespace HR_System.Admin.Promotion
             txtPromotionDate.Text = "";
         }
 
-        protected void gvPromotion_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        protected void gvPromotion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int id = int.Parse(e.CommandArgument.ToString());
-
+            int id = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName == "EditRow")
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
@@ -102,16 +111,14 @@ namespace HR_System.Admin.Promotion
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@PromotionID", id);
                         conn.Open();
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.Read())
                         {
-                            if (dr.Read())
-                            {
-                                hfPromotionID.Value = dr["PromotionID"].ToString();
-                                txtEmployeeName.Text = dr["EmployeeName"].ToString();
-                                txtFrom.Text = dr["DesignationFrom"].ToString();
-                                txtTo.Text = dr["DesignationTo"].ToString();
-                                txtPromotionDate.Text = Convert.ToDateTime(dr["PromotionDate"]).ToString("yyyy-MM-dd");
-                            }
+                            hfPromotionID.Value = dr["PromotionID"].ToString();
+                            txtEmployeeName.Text = dr["EmployeeName"].ToString();
+                            txtFrom.Text = dr["DesignationFrom"].ToString();
+                            txtTo.Text = dr["DesignationTo"].ToString();
+                            txtPromotionDate.Text = Convert.ToDateTime(dr["PromotionDate"]).ToString("yyyy-MM-dd");
                         }
                     }
                 }
@@ -130,24 +137,6 @@ namespace HR_System.Admin.Promotion
                 }
                 BindGrid();
             }
-        }
-
-        protected void btnFilter_Click(object sender, EventArgs e)
-        {
-            BindGrid();
-        }
-
-        protected void gvPromotion_Sorting(object sender, System.Web.UI.WebControls.GridViewSortEventArgs e)
-        {
-            if (SortColumn == e.SortExpression)
-                SortDirection = SortDirection == "ASC" ? "DESC" : "ASC";
-            else
-            {
-                SortColumn = e.SortExpression;
-                SortDirection = "ASC";
-            }
-
-            BindGrid();
         }
     }
 }
