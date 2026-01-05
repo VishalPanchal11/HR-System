@@ -1,67 +1,18 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true"
+<%@ Master Language="C#" AutoEventWireup="true"
     CodeBehind="AdminMaster.master.cs"
     Inherits="HR_System.Masters.AdminMaster" %>
 
-<<<<<<< HEAD
-=======
 <%@ Register Src="~/Controls/Header.ascx" TagPrefix="uc" TagName="Header" %>
 <%@ Register Src="~/Controls/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
 
->>>>>>> 5e32444431ffc72862c09d3dea80e2833b00189a
 <!DOCTYPE html>
 <html>
 <head runat="server">
     <title>NexusTrack - Admin</title>
-<<<<<<< HEAD
-
-    <link href="~/Styles/sidebar.css" rel="stylesheet" />
-    <script src="../Scripts/sidebar.js"></script>
-=======
->>>>>>> 5e32444431ffc72862c09d3dea80e2833b00189a
 </head>
-
 <body>
 <form runat="server">
 
-<<<<<<< HEAD
-   
-    <asp:ScriptManager 
-        ID="ScriptManager1"
-        runat="server"
-        EnablePartialRendering="true"
-        EnablePageMethods="true" />
-
-    <div class="wrapper">
-
-        <div id="sidebar" class="sidebar">
-            <div class="sidebar-header">NexusTrack</div>
-            <ul>
-                <li><a href="#" onclick="closeSidebar()">Auth</a></li>
-                <li><a href="#" onclick="closeSidebar()">Employee</a></li>
-                <li><a href="#" onclick="closeSidebar()">Training</a></li>
-                <li><a href="#" onclick="closeSidebar()">Documents</a></li>
-                <li><a href="#" onclick="closeSidebar()">Attendance</a></li>
-                <li><a href="#" onclick="closeSidebar()">Payroll</a></li>
-                <li><a href="#" onclick="closeSidebar()">Timesheet</a></li>
-                <li><a href="#" onclick="closeSidebar()">Projects</a></li>
-                <li><a href="#" onclick="closeSidebar()">Performance</a></li>
-                <li><a href="#" onclick="closeSidebar()">Promotion</a></li>
-                <li><a href="#" onclick="closeSidebar()">Resignation</a></li>
-                <li><a href="#" onclick="closeSidebar()">Termination</a></li>
-                <li><a href="#" onclick="closeSidebar()">Events</a></li>
-                <li><a href="#" onclick="closeSidebar()">Tickets</a></li>
-                <li><a href="#" onclick="closeSidebar()">Reports</a></li>
-            </ul>
-        </div>
-
-        <div class="content">
-            <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-        </div>
-
-    </div>
-
-=======
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
     <uc:Header runat="server" />
@@ -69,7 +20,6 @@
 
     <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 
->>>>>>> 5e32444431ffc72862c09d3dea80e2833b00189a
 </form>
 </body>
 </html>
