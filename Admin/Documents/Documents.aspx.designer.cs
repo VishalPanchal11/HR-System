@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HR_System.Employee
+namespace HR_System.Admin.Documents
 {
 
 
-    public partial class Profile
+    public partial class Documents
     {
     }
 }

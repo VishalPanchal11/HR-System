@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace HR_System.Employee
 {
-    public partial class Profile : System.Web.UI.Page
+    public partial class Documents : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -7,11 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HR_System.Employee
-{
-
-
-    public partial class Profile
-    {
+namespace HR_System.Admin.Employee {
+    
+    
+    public partial class Departments {
     }
 }

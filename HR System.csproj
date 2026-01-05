@@ -75,13 +75,27 @@
     <Content Include="Admin\Attendance\DepartmentLeaveShow.aspx" />
     <Content Include="Admin\Attendance\ManageLeavesetting.aspx" />
     <Content Include="Admin\Attendance\Timesheet.aspx" />
+    <Content Include="Admin\Documents\Documents.aspx" />
+    <Content Include="Admin\Documents\MasterDocuments.aspx" />
+    <Content Include="Admin\Employee\Departments.aspx" />
+    <Content Include="Admin\Employee\Designations.aspx" />
+    <Content Include="Admin\Employee\Employees.aspx" />
+    <Content Include="Admin\Employee\Profile.aspx" />
+    <Content Include="Admin\Employee\Roles.aspx" />
+    <Content Include="Admin\Training\Trainers.aspx" />
+    <Content Include="Admin\Training\TrainingList.aspx" />
+    <Content Include="Admin\Training\TrainingType.aspx" />
     <Content Include="Auth\Login.aspx" />
-    <Content Include="EditProject.aspx" />
-    <Content Include="Project.aspx" />
-    <Content Include="ProjectList.aspx" />
-    <Content Include="Scripts\sidebar.js" />
-    <Content Include="Styles\sidebar.css" />
-    <Content Include="TaskList.aspx" />
+    <Content Include="Auth\Logout.aspx" />
+    <Content Include="Controls\Header.ascx" />
+    <Content Include="Controls\SideBar.ascx" />
+    <Content Include="Employee\Documents.aspx" />
+    <Content Include="Employee\Profile.aspx" />
+    <Content Include="Manager\Timesheets.aspx" />
+    <Content Include="Admin\Projects\EditProject.aspx" />
+    <Content Include="Admin\Projects\Project.aspx" />
+    <Content Include="Admin\Projects\ProjectList.aspx" />
+    <Content Include="Admin\Projects\TaskList.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +155,76 @@
     <Compile Include="Admin\Attendance\Timesheet.aspx.designer.cs">
       <DependentUpon>Timesheet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Documents\Documents.aspx.cs">
+      <DependentUpon>Documents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Documents\Documents.aspx.designer.cs">
+      <DependentUpon>Documents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Documents\MasterDocuments.aspx.cs">
+      <DependentUpon>MasterDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Documents\MasterDocuments.aspx.designer.cs">
+      <DependentUpon>MasterDocuments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Employee\Departments.aspx.cs">
+      <DependentUpon>Departments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Employee\Departments.aspx.designer.cs">
+      <DependentUpon>Departments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Employee\Designations.aspx.cs">
+      <DependentUpon>Designations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Employee\Designations.aspx.designer.cs">
+      <DependentUpon>Designations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Employee\Employees.aspx.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Employee\Employees.aspx.designer.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Employee\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Employee\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Employee\Roles.aspx.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Employee\Roles.aspx.designer.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Training\Trainers.aspx.cs">
+      <DependentUpon>Trainers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Training\Trainers.aspx.designer.cs">
+      <DependentUpon>Trainers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Training\TrainingList.aspx.cs">
+      <DependentUpon>TrainingList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Training\TrainingList.aspx.designer.cs">
+      <DependentUpon>TrainingList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Training\TrainingType.aspx.cs">
+      <DependentUpon>TrainingType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Training\TrainingType.aspx.designer.cs">
+      <DependentUpon>TrainingType.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Auth\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -148,11 +232,53 @@
     <Compile Include="Auth\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EditProject.aspx.cs">
+    <Compile Include="Auth\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Auth\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SideBar.ascx.cs">
+      <DependentUpon>SideBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\SideBar.ascx.designer.cs">
+      <DependentUpon>SideBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Documents.aspx.cs">
+      <DependentUpon>Documents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Documents.aspx.designer.cs">
+      <DependentUpon>Documents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\Timesheets.aspx.cs">
+      <DependentUpon>Timesheets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager\Timesheets.aspx.designer.cs">
+      <DependentUpon>Timesheets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Projects\EditProject.aspx.cs">
       <DependentUpon>EditProject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EditProject.aspx.designer.cs">
+    <Compile Include="Admin\Projects\EditProject.aspx.designer.cs">
       <DependentUpon>EditProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="Masters\AdminMaster.Master.cs">
@@ -176,26 +302,26 @@
     <Compile Include="Masters\ManagerMaster.Master.designer.cs">
       <DependentUpon>ManagerMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="Project.aspx.cs">
+    <Compile Include="Admin\Projects\Project.aspx.cs">
       <DependentUpon>Project.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Project.aspx.designer.cs">
+    <Compile Include="Admin\Projects\Project.aspx.designer.cs">
       <DependentUpon>Project.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProjectList.aspx.cs">
+    <Compile Include="Admin\Projects\ProjectList.aspx.cs">
       <DependentUpon>ProjectList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ProjectList.aspx.designer.cs">
+    <Compile Include="Admin\Projects\ProjectList.aspx.designer.cs">
       <DependentUpon>ProjectList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaskList.aspx.cs">
+    <Compile Include="Admin\Projects\TaskList.aspx.cs">
       <DependentUpon>TaskList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TaskList.aspx.designer.cs">
+    <Compile Include="Admin\Projects\TaskList.aspx.designer.cs">
       <DependentUpon>TaskList.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -213,10 +339,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Folder Include="Employee\" />
     <Folder Include="Logo\" />
     <Folder Include="Manager\" />
     <Folder Include="Uplods\" />
+=======
+    <Folder Include="Scripts\" />
+    <Folder Include="Styles\" />
+>>>>>>> 5e32444431ffc72862c09d3dea80e2833b00189a
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
