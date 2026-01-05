@@ -5,24 +5,28 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.WebRequestMethods;
 
-namespace HR_System   
+namespace HR_System
 {
     public partial class AddProject : System.Web.UI.Page
     {
+        
         SqlConnection con = new SqlConnection(
             ConfigurationManager.ConnectionStrings["HRdbCon"].ConnectionString);
 
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LoadPriceTypes();
-                LoadUsers();
-                LoadManagers();
+                LoadUsers();      
+                LoadManagers();   
             }
         }
 
+      
         void LoadPriceTypes()
         {
             ddlPriceType.Items.Clear();
@@ -32,6 +36,7 @@ namespace HR_System
             ddlPriceType.Items.Add("€");
         }
 
+    
         void LoadUsers()
         {
             SqlCommand cmd = new SqlCommand(
@@ -49,9 +54,12 @@ namespace HR_System
             con.Close();
         }
 
+       
         void LoadManagers()
         {
-            SqlCommand cmd = new SqlCommand("sp_User_GetManagers", con);
+            SqlCommand cmd = new SqlCommand(
+                "sp_User_GetManagers", con);
+
             cmd.CommandType = CommandType.StoredProcedure;
 
             con.Open();
@@ -59,7 +67,9 @@ namespace HR_System
 
             ddlManager.DataSource = dr;
             ddlManager.DataTextField = "FirstName";
-            ddlManager.DataValueField = "FirstName"; 
+            ddlManager.DataValueField = "FirstName";
+            
+
             ddlManager.DataBind();
 
             dr.Close();
@@ -68,14 +78,23 @@ namespace HR_System
             ddlManager.Items.Insert(0, "Select Project Manager");
         }
 
+        
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (!ValidateForm()) return;
+            
+            if (!ValidateForm())
+            {
+                return;
+            }
 
+            
             string logoPath = SaveFile(fuLogo);
             string filePath = SaveFile(fuFile);
 
-            SqlCommand cmd = new SqlCommand("sp_AllProjects_Insert", con);
+            
+            SqlCommand cmd = new SqlCommand(
+                "sp_AllProjects_Insert", con);
+
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@ProjectName", txtProjectName.Text.Trim());
@@ -95,46 +114,112 @@ namespace HR_System
             int projectId = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
 
+            
             SaveTeamMembers(projectId);
 
+            
             Response.Redirect("ProjectList.aspx");
         }
 
+      
         bool ValidateForm()
         {
-            if (txtProjectName.Text == "") { ShowAlert("Project Name is required"); return false; }
-            if (txtClientName.Text == "") { ShowAlert("Client Name is required"); return false; }
-            if (txtDescription.Text == "") { ShowAlert("Description is required"); return false; }
-            if (txtStartDate.Text == "") { ShowAlert("Start Date is required"); return false; }
-            if (txtEndDate.Text == "") { ShowAlert("End Date is required"); return false; }
-            if (ddlPriority.SelectedValue == "") { ShowAlert("Select Priority"); return false; }
-            if (ddlPriceType.SelectedIndex == 0) { ShowAlert("Select Price Type"); return false; }
-            if (ddlStatus.SelectedValue == "") { ShowAlert("Select Status"); return false; }
-            if (ddlManager.SelectedIndex == 0) { ShowAlert("Select Project Manager"); return false; }
-
-            DateTime s = Convert.ToDateTime(txtStartDate.Text);
-            DateTime e = Convert.ToDateTime(txtEndDate.Text);
-            if (s > e) { ShowAlert("Start Date cannot be greater than End Date"); return false; }
-
-            if (!double.TryParse(txtProjectValue.Text, out double v) || v <= 0)
+            
+            if (txtProjectName.Text.Trim() == "")
             {
-                ShowAlert("Project Value must be valid number");
+                ShowAlert("Project Name is required");
                 return false;
             }
 
-            return true;
+            if (txtClientName.Text.Trim() == "")
+            {
+                ShowAlert("Client Name is required");
+                return false;
+            }
+
+            if (txtDescription.Text.Trim() == "")
+            {
+                ShowAlert("Description is required");
+                return false;
+            }
+
+            if (txtStartDate.Text == "")
+            {
+                ShowAlert("Start Date is required");
+                return false;
+            }
+
+            if (txtEndDate.Text == "")
+            {
+                ShowAlert("End Date is required");
+                return false;
+            }
+
+            if (ddlPriority.SelectedValue == "")
+            {
+                ShowAlert("Please select Priority");
+                return false;
+            }
+
+            if (ddlPriceType.SelectedIndex == 0)
+            {
+                ShowAlert("Please select Price Type");
+                return false;
+            }
+
+            if (ddlStatus.SelectedValue == "")
+            {
+                ShowAlert("Please select Status");
+                return false;
+            }
+
+            if (ddlManager.SelectedIndex == 0)
+            {
+                ShowAlert("Please select Project Manager");
+                return false;
+            }
+
+            
+            DateTime startDate = Convert.ToDateTime(txtStartDate.Text);
+            DateTime endDate = Convert.ToDateTime(txtEndDate.Text);
+
+            if (startDate > endDate)
+            {
+                ShowAlert("Start Date cannot be greater than End Date");
+                return false;
+            }
+
+            
+            double projectValue;
+            if (!double.TryParse(txtProjectValue.Text, out projectValue))
+            {
+                ShowAlert("Project Value must be numeric");
+                return false;
+            }
+
+            if (projectValue <= 0)
+            {
+                ShowAlert("Project Value must be greater than 0");
+                return false;
+            }
+
+            return true; 
         }
 
-        void ShowAlert(string msg)
+        
+        void ShowAlert(string message)
         {
             ScriptManager.RegisterStartupScript(
-                this, GetType(), "alert", $"alert('{msg}');", true);
+                this,
+                this.GetType(),
+                "alert",
+                "alert('" + message + "');",
+                true);
         }
 
+      
         void SaveTeamMembers(int projectId)
         {
-            con.Open();
-
             foreach (ListItem item in chkUsers.Items)
             {
                 if (item.Selected)
@@ -144,24 +229,35 @@ namespace HR_System
 
                     cmd.Parameters.AddWithValue("@PId", projectId);
                     cmd.Parameters.AddWithValue("@UId", item.Value);
+
+                    con.Open();
                     cmd.ExecuteNonQuery();
+                    con.Close();
                 }
             }
-
-            con.Close();
         }
 
+    
         string SaveFile(FileUpload fu)
         {
-            if (!fu.HasFile) return "";
+            if (fu.HasFile)
+            {
+                string folderPath = Server.MapPath("~/Uploads/");
 
-            string folder = Server.MapPath("~/Uploads/");
-            if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
 
-            string fileName = Guid.NewGuid() + "_" + fu.FileName;
-            fu.SaveAs(folder + fileName);
+                string fileName = Guid.NewGuid() + "_" + fu.FileName;
+                string fullPath = folderPath + fileName;
 
-            return "Uploads/" + fileName;
+                fu.SaveAs(fullPath);
+
+                return "Uploads/" + fileName;
+            }
+
+            return "";
         }
     }
 }

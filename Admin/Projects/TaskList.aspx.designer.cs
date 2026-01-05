@@ -11,88 +11,88 @@ namespace HR_System
 {
 
 
-    public partial class AddTask
+    public partial class TaskList
     {
 
         /// <summary>
-        /// txtTitle control.
+        /// btnAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        protected global::System.Web.UI.WebControls.LinkButton btnAll;
 
         /// <summary>
-        /// txtDeadline control.
+        /// btnHigh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDeadline;
+        protected global::System.Web.UI.WebControls.LinkButton btnHigh;
 
         /// <summary>
-        /// ddlProject control.
+        /// btnMedium control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProject;
+        protected global::System.Web.UI.WebControls.LinkButton btnMedium;
 
         /// <summary>
-        /// ddlStatus control.
+        /// btnLow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        protected global::System.Web.UI.WebControls.LinkButton btnLow;
 
         /// <summary>
-        /// ddlPriority control.
+        /// txtFilterDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPriority;
+        protected global::System.Web.UI.WebControls.TextBox txtFilterDate;
 
         /// <summary>
-        /// txtDescription control.
+        /// rptProjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        protected global::System.Web.UI.WebControls.Repeater rptProjects;
 
         /// <summary>
-        /// fuFile control.
+        /// lblNoProjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fuFile;
+        protected global::System.Web.UI.WebControls.Label lblNoProjects;
 
         /// <summary>
-        /// lblMsg control.
+        /// rptTaskDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsg;
+        protected global::System.Web.UI.WebControls.Repeater rptTaskDetails;
 
         /// <summary>
-        /// btnSave control.
+        /// lblEmpty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Label lblEmpty;
     }
 }
