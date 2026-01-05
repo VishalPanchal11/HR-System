@@ -3,6 +3,8 @@
     Inherits="HR_System.Masters.ManagerMaster" %>
 
 <%@ Register Src="~/Controls/Header.ascx" TagPrefix="uc" TagName="Header" %>
+<%@ Register Src="~/Controls/SideBar.ascx" TagPrefix="uc" TagName="SideBar" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -15,6 +17,8 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
     <uc:Header runat="server" />
+        <uc:SideBar runat="server" />
+
 
     <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 

@@ -14,14 +14,23 @@ namespace HR_System.Controls
 
             string role = Session["RoleName"].ToString();
 
-            // Admin
-            pnlAdmin.Visible = role == "Admin";
+            // Reset all
+            pnlAdmin.Visible = false;
+            pnlEmployee.Visible = false;
+            pnlManager.Visible = false;
 
-            // Employee
-            pnlEmployee.Visible = role == "Employee";
-
-            // Manager → NO sidebar at all
-            pnlSidebar.Visible = role != "Manager";
+            if (role == "Admin")
+            {
+                pnlAdmin.Visible = true;
+            }
+            else if (role == "Employee")
+            {
+                pnlEmployee.Visible = true;
+            }
+            else if (role == "Manager")
+            {
+                pnlManager.Visible = true;
+            }
         }
     }
 }

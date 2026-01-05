@@ -12,7 +12,7 @@
         <asp:HyperLink NavigateUrl="~/Admin/Employee/Designations.aspx" runat="server">Designations</asp:HyperLink><br />
         <asp:HyperLink NavigateUrl="~/Admin/Employee/Roles.aspx" runat="server">Roles</asp:HyperLink><br />
         <asp:HyperLink NavigateUrl="~/Admin/Employee/Employees.aspx" runat="server">Employees</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Profile.aspx" runat="server">Profile</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Admin/Employee/Profile.aspx" runat="server">Profile</asp:HyperLink>
         <br /><br />
 
         <strong>Training</strong><br />
@@ -25,7 +25,8 @@
         <asp:HyperLink NavigateUrl="~/Admin/Documents/MasterDocuments.aspx" runat="server">Master Documents</asp:HyperLink><br />
         <asp:HyperLink NavigateUrl="~/Admin/Documents/Documents.aspx" runat="server">Documents</asp:HyperLink>
         <br /><br />
-       <%--
+
+        <%--
         <asp:HyperLink NavigateUrl="~/Admin/Attendance.aspx" runat="server">Attendance</asp:HyperLink><br />
         <asp:HyperLink NavigateUrl="~/Admin/Payroll.aspx" runat="server">Payroll</asp:HyperLink><br />
         <asp:HyperLink NavigateUrl="~/Admin/Timesheet.aspx" runat="server">Timesheet</asp:HyperLink><br />
@@ -38,13 +39,21 @@
         <asp:HyperLink NavigateUrl="~/Admin/Tickets.aspx" runat="server">Tickets</asp:HyperLink><br />
         <asp:HyperLink NavigateUrl="~/Admin/Reports.aspx" runat="server">Reports</asp:HyperLink>
         --%>
+
+    </asp:Panel>
+
+    <!-- ================= MANAGER SIDEBAR ================= -->
+    <asp:Panel ID="pnlManager" runat="server" Visible="false">
+        <asp:HyperLink NavigateUrl="~/Manager/Profile.aspx" runat="server">Profile</asp:HyperLink><br />
+        <asp:HyperLink NavigateUrl="~/Manager/Timesheets.aspx" runat="server">Timesheets</asp:HyperLink>
     </asp:Panel>
 
     <!-- ================= EMPLOYEE SIDEBAR ================= -->
     <asp:Panel ID="pnlEmployee" runat="server" Visible="false">
 
-        <asp:HyperLink NavigateUrl="~/Profile.aspx" runat="server">Profile</asp:HyperLink><br />
+        <asp:HyperLink NavigateUrl="~/Employee/Profile.aspx" runat="server">Profile</asp:HyperLink><br />
         <asp:HyperLink NavigateUrl="~/Employee/Documents.aspx" runat="server">Documents</asp:HyperLink><br />
+
         <%--
         <asp:HyperLink NavigateUrl="~/Employee/Attendance.aspx" runat="server">Attendance</asp:HyperLink><br />
         <asp:HyperLink NavigateUrl="~/Employee/Payroll.aspx" runat="server">Payroll</asp:HyperLink><br />

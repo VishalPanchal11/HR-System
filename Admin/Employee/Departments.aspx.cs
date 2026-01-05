@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace HR_System.Admin.Employee
 {
-    public partial class Departments : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+	public partial class Departments : System.Web.UI.Page
+	{
+		protected void Page_Load(object sender, EventArgs e)
+		{
 
-        }
-    }
+		}
+	}
 }

@@ -18,8 +18,8 @@ namespace HR_System.Auth
             {
                 string query = @"
                     SELECT u.UserId, r.RoleName
-                    FROM Users u
-                    INNER JOIN Role r ON u.RoleId = r.RoleId
+                    FROM [User] u
+                    INNER JOIN [Role] r ON u.RoleId = r.RoleId
                     WHERE u.Email = @Email
                       AND u.PasswordHash = @Password
                       AND u.Status = 'Active'";
@@ -38,11 +38,11 @@ namespace HR_System.Auth
 
                     // Role-based redirect
                     if (Session["RoleName"].ToString() == "Admin")
-                        Response.Redirect("~/Profile.aspx");
+                        Response.Redirect("~/Admin/Employee/Profile.aspx");
                     else if (Session["RoleName"].ToString() == "Manager")
                         Response.Redirect("~/Manager/Timesheets.aspx");
                     else if (Session["RoleName"].ToString() == "Employee")
-                        Response.Redirect("~/Profile.aspx");
+                        Response.Redirect("~/Employee/Profile.aspx");
                 }
                 else
                 {

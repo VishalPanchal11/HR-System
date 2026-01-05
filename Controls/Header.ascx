@@ -6,7 +6,7 @@
     <strong style="font-size:24px;">NexusTrack</strong>
 
     <div style="float:right;">
-        <asp:HyperLink NavigateUrl="~/Profile.aspx" runat="server">Profile</asp:HyperLink>
+        <asp:HyperLink ID="lnkProfile" runat="server">Profile</asp:HyperLink>
         |
         <asp:HyperLink NavigateUrl="~/Auth/Logout.aspx" runat="server">Log Out</asp:HyperLink>
     </div>

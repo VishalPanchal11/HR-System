@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace HR_System
+namespace HR_System.Admin.Employee
 {
     public partial class Profile : System.Web.UI.Page
     {
