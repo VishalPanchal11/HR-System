@@ -67,18 +67,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\Attendance\ADDEmployeeSalary.aspx" />
     <Content Include="Admin\Attendance\AddLeave.aspx" />
+    <Content Include="Employee\Attendance\employeeattendance.aspx" />
+     <Content Include="Employee\Attendance\Leaves.aspx" />
     <Content Include="Admin\Attendance\Attendance.aspx" />
     <Content Include="Admin\Attendance\AttendanceAdmin.aspx" />
     <Content Include="Admin\Attendance\DepartmentLeaveShow.aspx" />
     <Content Include="Admin\Attendance\ManageLeavesetting.aspx" />
-    <Content Include="Admin\Attendance\MasterPayroll.aspx" />
     <Content Include="Admin\Attendance\Timesheet.aspx" />
-<<<<<<< HEAD
-    <Content Include="Attendance_Employee\employeeattendance.aspx" />
-    <Content Include="Attendance_Employee\Leaves.aspx" />
-=======
     <Content Include="Admin\Documents\Documents.aspx" />
     <Content Include="Admin\Documents\MasterDocuments.aspx" />
     <Content Include="Admin\Employee\Departments.aspx" />
@@ -86,10 +82,11 @@
     <Content Include="Admin\Employee\Employees.aspx" />
     <Content Include="Admin\Employee\Profile.aspx" />
     <Content Include="Admin\Employee\Roles.aspx" />
+    <Content Include="Admin\Projects\AddProject.aspx" />
+    <Content Include="Admin\Projects\AddTask.aspx" />
     <Content Include="Admin\Training\Trainers.aspx" />
     <Content Include="Admin\Training\TrainingList.aspx" />
     <Content Include="Admin\Training\TrainingType.aspx" />
->>>>>>> 3e6917aac62fde692226a2e8b7d405cc4c58b19b
     <Content Include="Auth\Login.aspx" />
     <Content Include="Auth\Logout.aspx" />
     <Content Include="Controls\Header.ascx" />
@@ -101,17 +98,11 @@
     <Content Include="Admin\Projects\Project.aspx" />
     <Content Include="Admin\Projects\ProjectList.aspx" />
     <Content Include="Admin\Projects\TaskList.aspx" />
+
     <Content Include="Styles\site.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Attendance\ADDEmployeeSalary.aspx.cs">
-      <DependentUpon>ADDEmployeeSalary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Attendance\ADDEmployeeSalary.aspx.designer.cs">
-      <DependentUpon>ADDEmployeeSalary.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Attendance\AddLeave.aspx.cs">
       <DependentUpon>AddLeave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -147,13 +138,6 @@
     <Compile Include="Admin\Attendance\ManageLeavesetting.aspx.designer.cs">
       <DependentUpon>ManageLeavesetting.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Attendance\MasterPayroll.aspx.cs">
-      <DependentUpon>MasterPayroll.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Attendance\MasterPayroll.aspx.designer.cs">
-      <DependentUpon>MasterPayroll.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Attendance\Timesheet.aspx.cs">
       <DependentUpon>Timesheet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -161,21 +145,6 @@
     <Compile Include="Admin\Attendance\Timesheet.aspx.designer.cs">
       <DependentUpon>Timesheet.aspx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Attendance_Employee\employeeattendance.aspx.cs">
-      <DependentUpon>employeeattendance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Attendance_Employee\employeeattendance.aspx.designer.cs">
-      <DependentUpon>employeeattendance.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Attendance_Employee\Leaves.aspx.cs">
-      <DependentUpon>Leaves.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Attendance_Employee\Leaves.aspx.designer.cs">
-      <DependentUpon>Leaves.aspx</DependentUpon>
-=======
     <Compile Include="Admin\Documents\Documents.aspx.cs">
       <DependentUpon>Documents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -225,6 +194,20 @@
     <Compile Include="Admin\Employee\Roles.aspx.designer.cs">
       <DependentUpon>Roles.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Projects\AddProject.aspx.cs">
+      <DependentUpon>AddProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Projects\AddProject.aspx.designer.cs">
+      <DependentUpon>AddProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Projects\AddTask.aspx.cs">
+      <DependentUpon>AddTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Projects\AddTask.aspx.designer.cs">
+      <DependentUpon>AddTask.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Training\Trainers.aspx.cs">
       <DependentUpon>Trainers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -245,7 +228,6 @@
     </Compile>
     <Compile Include="Admin\Training\TrainingType.aspx.designer.cs">
       <DependentUpon>TrainingType.aspx</DependentUpon>
->>>>>>> 3e6917aac62fde692226a2e8b7d405cc4c58b19b
     </Compile>
     <Compile Include="Auth\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -324,6 +306,24 @@
     <Compile Include="Masters\ManagerMaster.Master.designer.cs">
       <DependentUpon>ManagerMaster.Master</DependentUpon>
     </Compile>
+
+
+<Compile Include="Employee\Attendance\employeeattendance.aspx.cs">
+  <DependentUpon>employeeattendance.aspx</DependentUpon>
+  <SubType>ASPXCodeBehind</SubType>
+</Compile>
+<Compile Include="Employee\Attendance\employeeattendance.aspx.designer.cs">
+  <DependentUpon>employeeattendance.aspx</DependentUpon>
+</Compile>
+
+<Compile Include="Employee\Attendance\Leaves.aspx.cs">
+  <DependentUpon>Leaves.aspx</DependentUpon>
+  <SubType>ASPXCodeBehind</SubType>
+</Compile>
+<Compile Include="Employee\Attendance\Leaves.aspx.designer.cs">
+  <DependentUpon>Leaves.aspx</DependentUpon>
+</Compile>
+
     <Compile Include="Admin\Projects\Project.aspx.cs">
       <DependentUpon>Project.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -361,14 +361,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Folder Include="Employee\" />
-    <Folder Include="Manager\" />
-    <Folder Include="NewFolder1\" />
-=======
     <Folder Include="Logo\" />
     <Folder Include="Uplods\" />
->>>>>>> 3e6917aac62fde692226a2e8b7d405cc4c58b19b
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
