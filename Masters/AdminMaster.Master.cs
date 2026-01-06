@@ -11,7 +11,10 @@ namespace HR_System.Masters
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["RoleName"]?.ToString() != "Admin")
+            {
+                Response.Redirect("~/Auth/Login.aspx");
+            }
         }
     }
 }
