@@ -1,29 +1,29 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ManagerMaster.master.cs" Inherits="HR_System.Masters.ManagerMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true"
+    CodeBehind="ManagerMaster.master.cs"
+    Inherits="HR_System.Masters.ManagerMaster" %>
+
+<%@ Register Src="~/Controls/Header.ascx" TagPrefix="uc" TagName="Header" %>
+
+
+
 <!DOCTYPE html>
 <html>
 <head runat="server">
     <title>NexusTrack - Manager</title>
-    <link href="~/Styles/sidebar.css" rel="stylesheet" />
-    <script src="../Scripts/sidebar.js"></script>
+    <link href="~/Styles/site.css" rel="stylesheet" />
+
+
 </head>
 <body>
 <form runat="server">
 
-<div class="wrapper">
-    <div id="sidebar" class="sidebar">
-        <div class="sidebar-header">NexusTrack</div>
-        <ul>
-            <li><a href="#" onclick="closeSidebar()">Timesheet</a></li>
-        </ul>
-    </div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
-    <div class="content">
-        <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-    </div>
-</div>
+    <uc:Header runat="server" />
+       
+
+    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 
 </form>
 </body>
 </html>
-

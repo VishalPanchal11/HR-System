@@ -1,6 +1,7 @@
 use Pulse360_FinalDb;
-
+select LeaveTypeId from MasterLeaveTypes;
 select *  from [User];
+select*from [Role];
 -- user procs
 -- user triggers
 select * from Trainer;
@@ -128,25 +129,36 @@ select*from Attendance;
    select*from Timesheets;
 
   --6.1)Admin timesheet Management approved
-        create procedure Pro_StatusAppr_Timesheets
+        alter procedure Pro_StatusAppr_Timesheets
+		 @TimesheetId INT
 		as
 		begin
 		  update Timesheets
-		  set [Status]='Approved';
+		  set [Status]='Approved'
+		  where TimesheetId = @TimesheetId;
 		end
   --6.2)Admin timesheet Management Rejected
-       create procedure Pro_StatusRejec_Timesheets
+       alter procedure Pro_StatusRejec_Timesheets
+	    @TimesheetId INT
 		as
 		begin
 		  update Timesheets
-		  set [Status]='Rejected';
+		  set [Status]='Rejected'
+		  WHERE TimesheetId = @TimesheetId;;
 		end
 
   --6.3)Admin timesheet show
-        create procedure Pro_showTimesheets
+       select*from [User];
+	   select*from Timesheets;
+    	select*from AllProjects;
+
+        alter procedure Pro_showTimesheets
 		as
 		begin
-		    select  UserId,CreatedAt,ProjectId,WorkHours,[Status] from Timesheets;
+		    select  t.TimesheetId,u.FirstName,u.LastName,t.CreatedAt,ap.ProjectName,t.WorkHours,t.[Status] 
+			from [User] u
+			join Timesheets t on u.UserId=t.UserId
+			join AllProjects ap on ap.ProjectId=t.ProjectId;
 		end
 -------------------------------------------------------------------------------------------------
 --Payroll Master Payroll
@@ -311,7 +323,8 @@ select*from Deduction;
 -------------------------------------------------------------------------------------------------------------------
 --Payroll/addEmployeeSalary (not done yet)
 select*from EmployeeDeductions;
-select*from EmployeeEarnings;	
+select*from EmployeeEarnings;
+
 ------------------------------------------------------------------------------------------------------------------
 --Payroll/EmployeeSalaryList
 create procedure Pro_EmployeeSalaryList
@@ -331,22 +344,31 @@ select*from Role;
 --------------------------------------------------------Employee-------------------------------------------------------------
 --1)Employee leave request
   select*from LeaveRequests;
+  ALTER TABLE LeaveRequests
+ADD DEFAULT 'Pending' FOR StatusHistory;
 
   --1.1)add(Apply leaves)
-        create procedure Pro_EmpApply_leaves
-		@LeaveTypeId int,
-		@StartDate datetime2(7),
-		@EndDate datetime2(7),
-		@Reason nvarchar(max)
-		as
-		begin
-		   insert into LeaveRequests (LeaveTypeId,StartDate,EndDate,Reason) values (@LeaveTypeId,@StartDate,@EndDate,@Reason);
-		end
+	ALTER PROCEDURE Pro_EmpApply_leaves
+		@UserId INT,
+		@LeaveTypeId INT,
+		@StartDate DATETIME2(7),
+		@EndDate DATETIME2(7),
+		@Reason NVARCHAR(MAX) AS
+	    BEGIN
+		INSERT INTO LeaveRequests (UserId, LeaveTypeId, StartDate, EndDate, Reason)
+		VALUES (@UserId, @LeaveTypeId, @StartDate, @EndDate, @Reason) 
+	 END 
+
   --1.2)show(Apply leaves)
-       create procedure Pro_EmpShow_leaves
+      select*from MasterLeaveTypes;
+	  select*from LeaveRequests;
+      alter procedure Pro_EmpShow_leaves
 	   as
 	   begin
-	     select LeaveRequestId,LeaveTypeId,StartDate,EndDate,Reason,NumberOfDays from LeaveRequests;
+	     select LR.LeaveRequestId as Leave_ID,ML.LeaveType,LR.StartDate,LR.EndDate,LR.Reason,LR.NumberOfDays,LR.[Status]
+		 from LeaveRequests LR
+		 join  MasterLeaveTypes ML
+		 on LR.LeaveTypeId=ML.LeaveTypeId;
 	   end
 
 --2)show Employee attendance
