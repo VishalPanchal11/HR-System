@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HR_System
+namespace HR_System.Admin.Projects
 {
 
 

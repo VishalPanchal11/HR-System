@@ -67,8 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AddProject.aspx" />
-    <Content Include="AddTask.aspx" />
     <Content Include="Admin\Attendance\AddLeave.aspx" />
     <Content Include="Admin\Attendance\Attendance.aspx" />
     <Content Include="Admin\Attendance\AttendanceAdmin.aspx" />
@@ -96,23 +94,10 @@
     <Content Include="Admin\Projects\Project.aspx" />
     <Content Include="Admin\Projects\ProjectList.aspx" />
     <Content Include="Admin\Projects\TaskList.aspx" />
+    <Content Include="Styles\site.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddProject.aspx.cs">
-      <DependentUpon>AddProject.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AddProject.aspx.designer.cs">
-      <DependentUpon>AddProject.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AddTask.aspx.cs">
-      <DependentUpon>AddTask.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AddTask.aspx.designer.cs">
-      <DependentUpon>AddTask.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Attendance\AddLeave.aspx.cs">
       <DependentUpon>AddLeave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -339,12 +324,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Employee\" />
     <Folder Include="Logo\" />
-    <Folder Include="Manager\" />
     <Folder Include="Uplods\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="Styles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

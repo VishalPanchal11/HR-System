@@ -1,6 +1,7 @@
 use Pulse360_FinalDb;
 
 select *  from [User];
+select *  from [Role];
 -- user procs
 -- user triggers
 select * from Trainer;

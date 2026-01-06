@@ -1,30 +1,27 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true"
     CodeBehind="SideBar.ascx.cs"
     Inherits="HR_System.Controls.SideBar" %>
-
-<asp:Panel ID="pnlSidebar" runat="server">
+<asp:Panel ID="pnlSidebar" runat="server" CssClass="sidebar">
 
     <!-- ================= ADMIN SIDEBAR ================= -->
-    <asp:Panel ID="pnlAdmin" runat="server" Visible="false">
+    <asp:Panel ID="pnlAdmin" runat="server" Visible="false" CssClass="sidebar-section">
 
-        <strong>Employee</strong><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Employee/Departments.aspx" runat="server">Departments</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Employee/Designations.aspx" runat="server">Designations</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Employee/Roles.aspx" runat="server">Roles</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Employee/Employees.aspx" runat="server">Employees</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Employee/Profile.aspx" runat="server">Profile</asp:HyperLink>
-        <br /><br />
+        <div class="sidebar-title">Employee</div>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Employee/Departments.aspx" runat="server">Departments</asp:HyperLink>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Employee/Designations.aspx" runat="server">Designations</asp:HyperLink>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Employee/Roles.aspx" runat="server">Roles</asp:HyperLink>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Employee/Employees.aspx" runat="server">Employees</asp:HyperLink>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Employee/Profile.aspx" runat="server">Profile</asp:HyperLink>
 
-        <strong>Training</strong><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Training/TrainingList.aspx" runat="server">Training List</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Training/Trainers.aspx" runat="server">Trainers</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Training/TrainingType.aspx" runat="server">Training Type</asp:HyperLink>
-        <br /><br />
+        <div class="sidebar-title">Training</div>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Training/TrainingList.aspx" runat="server">Training List</asp:HyperLink>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Training/Trainers.aspx" runat="server">Trainers</asp:HyperLink>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Training/TrainingType.aspx" runat="server">Training Type</asp:HyperLink>
 
-        <strong>Documents</strong><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Documents/MasterDocuments.aspx" runat="server">Master Documents</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Admin/Documents/Documents.aspx" runat="server">Documents</asp:HyperLink>
-        <br /><br />
+        <div class="sidebar-title">Documents</div>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Documents/MasterDocuments.aspx" runat="server">Master Documents</asp:HyperLink>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Admin/Documents/Documents.aspx" runat="server">Documents</asp:HyperLink>
+
 
         <%--
         <asp:HyperLink NavigateUrl="~/Admin/Attendance.aspx" runat="server">Attendance</asp:HyperLink><br />
@@ -42,17 +39,16 @@
 
     </asp:Panel>
 
-    <!-- ================= MANAGER SIDEBAR ================= -->
-    <asp:Panel ID="pnlManager" runat="server" Visible="false">
-        <asp:HyperLink NavigateUrl="~/Manager/Profile.aspx" runat="server">Profile</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Manager/Timesheets.aspx" runat="server">Timesheets</asp:HyperLink>
+     <!-- ================= MANAGER SIDEBAR ================= -->
+    <asp:Panel ID="pnlManager" runat="server" Visible="false" CssClass="sidebar-section">
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Manager/Profile.aspx" runat="server">Profile</asp:HyperLink>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Manager/Timesheets.aspx" runat="server">Timesheets</asp:HyperLink>
     </asp:Panel>
 
     <!-- ================= EMPLOYEE SIDEBAR ================= -->
-    <asp:Panel ID="pnlEmployee" runat="server" Visible="false">
-
-        <asp:HyperLink NavigateUrl="~/Employee/Profile.aspx" runat="server">Profile</asp:HyperLink><br />
-        <asp:HyperLink NavigateUrl="~/Employee/Documents.aspx" runat="server">Documents</asp:HyperLink><br />
+    <asp:Panel ID="pnlEmployee" runat="server" Visible="false" CssClass="sidebar-section">
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Employee/Profile.aspx" runat="server">Profile</asp:HyperLink>
+        <asp:HyperLink CssClass="sidebar-link" NavigateUrl="~/Employee/Documents.aspx" runat="server">Documents</asp:HyperLink>
 
         <%--
         <asp:HyperLink NavigateUrl="~/Employee/Attendance.aspx" runat="server">Attendance</asp:HyperLink><br />

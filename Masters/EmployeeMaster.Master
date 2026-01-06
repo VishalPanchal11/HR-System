@@ -9,6 +9,9 @@
 <html>
 <head runat="server">
     <title>NexusTrack - Employee</title>
+    <link href="~/Styles/site.css" rel="stylesheet" />
+
+
 </head>
 <body>
 <form runat="server">

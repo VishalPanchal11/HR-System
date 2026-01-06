@@ -2,13 +2,11 @@
     CodeBehind="Header.ascx.cs"
     Inherits="HR_System.Controls.Header" %>
 
-<div>
-    <strong style="font-size:24px;">NexusTrack</strong>
+<div class="header">
+    <div class="logo">Nexus<span>Track</span></div>
 
-    <div style="float:right;">
-        <asp:HyperLink ID="lnkProfile" runat="server">Profile</asp:HyperLink>
-        |
-        <asp:HyperLink NavigateUrl="~/Auth/Logout.aspx" runat="server">Log Out</asp:HyperLink>
+    <div class="header-actions">
+        <asp:HyperLink ID="lnkProfile" CssClass="header-link" runat="server">Profile</asp:HyperLink>
+        <asp:HyperLink CssClass="header-link logout" NavigateUrl="~/Auth/Logout.aspx" runat="server">Log Out</asp:HyperLink>
     </div>
 </div>
-<hr />

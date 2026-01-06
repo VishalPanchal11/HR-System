@@ -11,7 +11,7 @@
 
     <!-- YAHAN APNA PROJECT PAGE KA CONTENT AAYEGA -->
 
-    <div class="container mt-4">
+    <div>
         <div class="card p-4">
             <h3>Project</h3>
 

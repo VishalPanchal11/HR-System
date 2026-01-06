@@ -1,9 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"
-    MasterPageFile="~/Masters/AdminMaster.master"
-    CodeBehind="AddProject.aspx.cs"
-    Inherits="HR_System.AddProject" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/AdminMaster.Master" AutoEventWireup="true" CodeBehind="AddProject.aspx.cs" Inherits="HR_System.Admin.Projects.AddProject" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+</asp:Content>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 

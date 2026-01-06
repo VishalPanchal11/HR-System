@@ -7,47 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HR_System.Controls
+namespace HR_System
 {
 
 
-    public partial class SideBar
+    public partial class ProjectList
     {
 
         /// <summary>
-        /// pnlSidebar control.
+        /// btnAddProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSidebar;
+        protected global::System.Web.UI.WebControls.Button btnAddProject;
 
         /// <summary>
-        /// pnlAdmin control.
+        /// ddlStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAdmin;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
 
         /// <summary>
-        /// pnlManager control.
+        /// ddlSort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlManager;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSort;
 
         /// <summary>
-        /// pnlEmployee control.
+        /// rptProjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEmployee;
+        protected global::System.Web.UI.WebControls.Repeater rptProjects;
     }
 }

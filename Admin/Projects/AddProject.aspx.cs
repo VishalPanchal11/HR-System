@@ -11,22 +11,22 @@ namespace HR_System
 {
     public partial class AddProject : System.Web.UI.Page
     {
-        
+
         SqlConnection con = new SqlConnection(
             ConfigurationManager.ConnectionStrings["HRdbCon"].ConnectionString);
 
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LoadPriceTypes();
-                LoadUsers();      
-                LoadManagers();   
+                LoadUsers();
+                LoadManagers();
             }
         }
 
-      
+
         void LoadPriceTypes()
         {
             ddlPriceType.Items.Clear();
@@ -36,7 +36,7 @@ namespace HR_System
             ddlPriceType.Items.Add("€");
         }
 
-    
+
         void LoadUsers()
         {
             SqlCommand cmd = new SqlCommand(
@@ -54,7 +54,7 @@ namespace HR_System
             con.Close();
         }
 
-       
+
         void LoadManagers()
         {
             SqlCommand cmd = new SqlCommand(
@@ -68,7 +68,7 @@ namespace HR_System
             ddlManager.DataSource = dr;
             ddlManager.DataTextField = "FirstName";
             ddlManager.DataValueField = "FirstName";
-            
+
 
             ddlManager.DataBind();
 
@@ -78,20 +78,20 @@ namespace HR_System
             ddlManager.Items.Insert(0, "Select Project Manager");
         }
 
-        
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            
+
             if (!ValidateForm())
             {
                 return;
             }
 
-            
+
             string logoPath = SaveFile(fuLogo);
             string filePath = SaveFile(fuFile);
 
-            
+
             SqlCommand cmd = new SqlCommand(
                 "sp_AllProjects_Insert", con);
 
@@ -114,17 +114,17 @@ namespace HR_System
             int projectId = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
 
-            
+
             SaveTeamMembers(projectId);
 
-            
+
             Response.Redirect("ProjectList.aspx");
         }
 
-      
+
         bool ValidateForm()
         {
-            
+
             if (txtProjectName.Text.Trim() == "")
             {
                 ShowAlert("Project Name is required");
@@ -179,7 +179,7 @@ namespace HR_System
                 return false;
             }
 
-            
+
             DateTime startDate = Convert.ToDateTime(txtStartDate.Text);
             DateTime endDate = Convert.ToDateTime(txtEndDate.Text);
 
@@ -189,7 +189,7 @@ namespace HR_System
                 return false;
             }
 
-            
+
             double projectValue;
             if (!double.TryParse(txtProjectValue.Text, out projectValue))
             {
@@ -203,10 +203,10 @@ namespace HR_System
                 return false;
             }
 
-            return true; 
+            return true;
         }
 
-        
+
         void ShowAlert(string message)
         {
             ScriptManager.RegisterStartupScript(
@@ -217,7 +217,7 @@ namespace HR_System
                 true);
         }
 
-      
+
         void SaveTeamMembers(int projectId)
         {
             foreach (ListItem item in chkUsers.Items)
@@ -237,7 +237,7 @@ namespace HR_System
             }
         }
 
-    
+
         string SaveFile(FileUpload fu)
         {
             if (fu.HasFile)
