@@ -23,7 +23,6 @@ namespace HR_System.Admin.Attendance
 
         protected void SubmitAddType(object sender, EventArgs e)
         {
-     
             string leavetype = LeaveType.Text;
             SqlCommand cmd = new SqlCommand("Pro_InsertMasterLeaveTypes", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;

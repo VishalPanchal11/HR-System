@@ -1,7 +1,7 @@
 use Pulse360_FinalDb;
-
+select LeaveTypeId from MasterLeaveTypes;
 select *  from [User];
-select *  from [Role];
+select*from [Role];
 -- user procs
 -- user triggers
 select * from Trainer;
@@ -323,7 +323,8 @@ select*from Deduction;
 -------------------------------------------------------------------------------------------------------------------
 --Payroll/addEmployeeSalary (not done yet)
 select*from EmployeeDeductions;
-select*from EmployeeEarnings;	
+select*from EmployeeEarnings;
+
 ------------------------------------------------------------------------------------------------------------------
 --Payroll/EmployeeSalaryList
 create procedure Pro_EmployeeSalaryList
@@ -343,22 +344,31 @@ select*from Role;
 --------------------------------------------------------Employee-------------------------------------------------------------
 --1)Employee leave request
   select*from LeaveRequests;
+  ALTER TABLE LeaveRequests
+ADD DEFAULT 'Pending' FOR StatusHistory;
 
   --1.1)add(Apply leaves)
-        create procedure Pro_EmpApply_leaves
-		@LeaveTypeId int,
-		@StartDate datetime2(7),
-		@EndDate datetime2(7),
-		@Reason nvarchar(max)
-		as
-		begin
-		   insert into LeaveRequests (LeaveTypeId,StartDate,EndDate,Reason) values (@LeaveTypeId,@StartDate,@EndDate,@Reason);
-		end
+	ALTER PROCEDURE Pro_EmpApply_leaves
+		@UserId INT,
+		@LeaveTypeId INT,
+		@StartDate DATETIME2(7),
+		@EndDate DATETIME2(7),
+		@Reason NVARCHAR(MAX) AS
+	    BEGIN
+		INSERT INTO LeaveRequests (UserId, LeaveTypeId, StartDate, EndDate, Reason)
+		VALUES (@UserId, @LeaveTypeId, @StartDate, @EndDate, @Reason) 
+	 END 
+
   --1.2)show(Apply leaves)
-       create procedure Pro_EmpShow_leaves
+      select*from MasterLeaveTypes;
+	  select*from LeaveRequests;
+      alter procedure Pro_EmpShow_leaves
 	   as
 	   begin
-	     select LeaveRequestId,LeaveTypeId,StartDate,EndDate,Reason,NumberOfDays from LeaveRequests;
+	     select LR.LeaveRequestId as Leave_ID,ML.LeaveType,LR.StartDate,LR.EndDate,LR.Reason,LR.NumberOfDays,LR.[Status]
+		 from LeaveRequests LR
+		 join  MasterLeaveTypes ML
+		 on LR.LeaveTypeId=ML.LeaveTypeId;
 	   end
 
 --2)show Employee attendance
@@ -468,9 +478,3 @@ select*from MasterLeaveTypes;
 
 select*from LeaveBalances;
 
---------------Ramtialk Yadav Project module 
-select * from AllProjects;
-Select * from Task;
-select * from Taskmember;
-select * from ProjectsUser;
-select * from [User];
