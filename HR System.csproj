@@ -75,6 +75,11 @@
     <Content Include="Admin\Attendance\DepartmentLeaveShow.aspx" />
     <Content Include="Admin\Attendance\ManageLeavesetting.aspx" />
     <Content Include="Admin\Attendance\Timesheet.aspx" />
+    <Content Include="Admin\Promotion\Promotion.aspx" />
+    <Content Include="Admin\Promotion\Promotion.css" />
+    <Content Include="Admin\Promotion\Promotion.html" />
+    <Content Include="Admin\Resignation\Resignation.aspx" />
+    <Content Include="Admin\Termination\Termination.aspx" />
     <Content Include="Admin\Documents\Documents.aspx" />
     <Content Include="Admin\Documents\MasterDocuments.aspx" />
     <Content Include="Admin\Employee\Departments.aspx" />
@@ -145,6 +150,26 @@
     <Compile Include="Admin\Attendance\Timesheet.aspx.designer.cs">
       <DependentUpon>Timesheet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Promotion\Promotion.aspx.cs">
+      <DependentUpon>Promotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Promotion\Promotion.aspx.designer.cs">
+      <DependentUpon>Promotion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Resignation\Resignation.aspx.cs">
+      <DependentUpon>Resignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Resignation\Resignation.aspx.designer.cs">
+      <DependentUpon>Resignation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Termination\Termination.aspx.cs">
+      <DependentUpon>Termination.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Termination\Termination.aspx.designer.cs">
+      <DependentUpon>Termination.aspx</DependentUpon>
     <Compile Include="Admin\Documents\Documents.aspx.cs">
       <DependentUpon>Documents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
