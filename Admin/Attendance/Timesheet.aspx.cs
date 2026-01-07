@@ -22,17 +22,35 @@ namespace HR_System.Admin.Attendance
         }
 
         protected void btnApproveSelected_Click(object sender, EventArgs e)
-        {  
-            SqlCommand cmd = new SqlCommand("Pro_StatusAppr_Timesheets", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
+        {
+            foreach (GridViewRow row in gvTimesheet.Rows)
+            {
+                CheckBox chkSelect = row.FindControl("chkSelect") as CheckBox;
+                if (chkSelect != null && chkSelect.Checked)
+                {
+                    int timesheetId = Convert.ToInt32(gvTimesheet.DataKeys[row.RowIndex].Value);
+                    SqlCommand cmd = new SqlCommand("Pro_StatusAppr_Timesheets", conn);
+                    cmd.Parameters.AddWithValue("@TimesheetId", timesheetId);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         protected void btnRejectSelected_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("Pro_StatusRejec_Timesheets", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
+            foreach (GridViewRow row in gvTimesheet.Rows)
+            {
+                CheckBox chkSelect = row.FindControl("chkSelect") as CheckBox;
+                if (chkSelect != null && chkSelect.Checked)
+                {
+                    int timesheetId = Convert.ToInt32(gvTimesheet.DataKeys[row.RowIndex].Value);
+                    SqlCommand cmd = new SqlCommand("Pro_StatusRejec_Timesheets", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@TimesheetId", timesheetId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

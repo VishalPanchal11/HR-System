@@ -21,9 +21,9 @@ namespace HR_System.Admin.Attendance
                 conn.Open();
         }
 
-        protected void SubmitAddType(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string leavetype = LeaveType.Text;
+            string leavetype = txtLeaveType.Text;
             SqlCommand cmd = new SqlCommand("Pro_InsertMasterLeaveTypes", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@LeaveType", leavetype);
@@ -32,13 +32,11 @@ namespace HR_System.Admin.Attendance
 
         protected void gvLeaveTypes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            
             int id = Convert.ToInt32(gvLeaveTypes.DataKeys[e.RowIndex].Value);
             SqlCommand cmd = new SqlCommand("Pro_DeleteMasterLeaveTypes", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@LeaveTypeId", id); 
+            cmd.Parameters.AddWithValue("@LeaveTypeId", id);
             cmd.ExecuteNonQuery();
-           
         }
     }
 }   

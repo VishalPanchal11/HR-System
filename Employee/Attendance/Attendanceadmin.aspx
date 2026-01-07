@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/AdminMaster.Master" AutoEventWireup="true" CodeBehind="AttendanceAdmin.aspx.cs" Inherits="HR_System.Admin.Attendance.AttendanceAdmin" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/EmployeeMaster.Master" AutoEventWireup="true" CodeBehind="Attendanceadmin.aspx.cs" Inherits="HR_System.Employee.Attendance.Attendanceadmin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+   
 
 <!DOCTYPE html>
 <html lang="en">
@@ -153,8 +153,8 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server" />
+ 
+
         
         <div class="container-fluid py-4">
             <h2 class="mb-4">Employee Attendance</h2>
@@ -170,7 +170,7 @@
                             <asp:Label ID="lblCurrentTime" runat="server" />
                         </div>
 
-                        <img src="<%= ResolveUrl(ProfilePicture) %>" alt="Profile" class="profile-image" />
+                        <img src="" alt="Profile" class="profile-image" />
 
                         <div class="production-badge">
                             Production: <asp:Label ID="lblProduction" runat="server" Text="0h:0m" />
@@ -183,7 +183,7 @@
 
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                <asp:Button ID="btnAttendance" runat="server" 
+                                <asp:Button ID="btnAttendance"
                                     CssClass="attendance-btn" 
                                     Text="Check-In" 
                                     OnClick="btnAttendance_Click" />
@@ -204,16 +204,15 @@
                                     <label class="me-2">Start:</label>
                                     <asp:TextBox ID="txtStartDate" runat="server" TextMode="Date" 
                                         CssClass="form-control" AutoPostBack="true" 
-                                        OnTextChanged="FilterData" />
+                                        />
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <label class="me-2">End:</label>
                                     <asp:TextBox ID="txtEndDate" runat="server" TextMode="Date" 
-                                        CssClass="form-control" AutoPostBack="true" 
-                                        OnTextChanged="FilterData" />
+                                        CssClass="form-control" AutoPostBack="true"  />
                                 </div>
                                 <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-select" 
-                                    AutoPostBack="true" OnSelectedIndexChanged="FilterData">
+                                    AutoPostBack="true">
                                     <asp:ListItem Value="">Select Status</asp:ListItem>
                                     <asp:ListItem Value="Present">Present</asp:ListItem>
                                     <asp:ListItem Value="Absent">Absent</asp:ListItem>
@@ -222,7 +221,7 @@
                                 <div class="d-flex align-items-center">
                                     <label class="me-2">Rows:</label>
                                     <asp:DropDownList ID="ddlRowsPerPage" runat="server" CssClass="form-select" 
-                                        AutoPostBack="true" OnSelectedIndexChanged="FilterData">
+                                        AutoPostBack="true" >
                                         <asp:ListItem Value="10">10</asp:ListItem>
                                         <asp:ListItem Value="25">25</asp:ListItem>
                                         <asp:ListItem Value="50">50</asp:ListItem>
@@ -240,7 +239,7 @@
                                     GridLines="None"
                                     AllowPaging="True"
                                     PageSize="10"
-                                    OnPageIndexChanging="gvAttendance_PageIndexChanging">
+                        >
                                     <Columns>
                                         <asp:BoundField DataField="Date" HeaderText="Date" 
                                             DataFormatString="{0:yyyy-MM-dd}" />
@@ -248,7 +247,7 @@
                                             DataFormatString="{0:hh:mm tt}" />
                                         <asp:TemplateField HeaderText="Status">
                                             <ItemTemplate>
-                                                <%# GetStatusBadge(Eval("Status").ToString()) %>
+                                               
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="CheckOut" HeaderText="Check Out" 
@@ -258,7 +257,7 @@
                                         <asp:BoundField DataField="OvertimeHours" HeaderText="Overtime" />
                                         <asp:TemplateField HeaderText="Production Hours">
                                             <ItemTemplate>
-                                                <%# GetProductionBadge(Eval("ProductionHours")) %>
+                                        
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
@@ -271,7 +270,7 @@
                 </div>
             </div>
         </div>
-    </form>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -281,19 +280,19 @@
             var searchText = this.value.toLowerCase();
             var table = document.getElementById('<%= gvAttendance.ClientID %>');
             var rows = table.getElementsByTagName('tr');
-
+            
             for (var i = 1; i < rows.length; i++) {
                 var row = rows[i];
                 var cells = row.getElementsByTagName('td');
                 var found = false;
-
+                
                 for (var j = 0; j < cells.length; j++) {
                     if (cells[j].textContent.toLowerCase().includes(searchText)) {
                         found = true;
                         break;
                     }
                 }
-
+                
                 row.style.display = found ? '' : 'none';
             }
         });

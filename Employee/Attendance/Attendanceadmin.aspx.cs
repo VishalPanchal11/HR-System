@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace HR_System.Attendance
+namespace HR_System.Employee.Attendance
 {
-    public partial class employeeattendance : System.Web.UI.Page
+    public partial class Attendanceadmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

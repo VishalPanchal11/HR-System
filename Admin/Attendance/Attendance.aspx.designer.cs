@@ -15,13 +15,31 @@ namespace HR_System.Admin.Attendance
     {
 
         /// <summary>
-        /// LeaveType control.
+        /// pnlMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LeaveType;
+        protected global::System.Web.UI.WebControls.Panel pnlMessage;
+
+        /// <summary>
+        /// litMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litMsg;
+
+        /// <summary>
+        /// txtLeaveType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLeaveType;
 
         /// <summary>
         /// btnSubmit control.
@@ -42,12 +60,12 @@ namespace HR_System.Admin.Attendance
         protected global::System.Web.UI.WebControls.GridView gvLeaveTypes;
 
         /// <summary>
-        /// LeaveTypeDB control.
+        /// AddLeaveDB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource LeaveTypeDB;
+        protected global::System.Web.UI.WebControls.SqlDataSource AddLeaveDB;
     }
 }

@@ -175,6 +175,7 @@ select*from Attendance;
 -------------------------------------------------------------------------------------------------
 --6)Admin Timesheet Management
    select*from Timesheets;
+   select*from [User];
 
   --6.1)Admin timesheet Management approved
         alter procedure Pro_StatusAppr_Timesheets
@@ -192,7 +193,7 @@ select*from Attendance;
 		begin
 		  update Timesheets
 		  set [Status]='Rejected'
-		  WHERE TimesheetId = @TimesheetId;;
+		  WHERE TimesheetId = @TimesheetId;
 		end
 
   --6.3)Admin timesheet show
@@ -394,6 +395,8 @@ select*from Role;
   select*from LeaveRequests;
   ALTER TABLE LeaveRequests
 ADD DEFAULT 'Pending' FOR StatusHistory;
+ ALTER TABLE LeaveRequests
+ADD DEFAULT 'admin' FOR [Status];
 
   --1.1)add(Apply leaves)
 	ALTER PROCEDURE Pro_EmpApply_leaves
@@ -401,10 +404,12 @@ ADD DEFAULT 'Pending' FOR StatusHistory;
 		@LeaveTypeId INT,
 		@StartDate DATETIME2(7),
 		@EndDate DATETIME2(7),
-		@Reason NVARCHAR(MAX) AS
+		@Reason NVARCHAR(MAX),
+		@NumberOfDays int
+		AS
 	    BEGIN
-		INSERT INTO LeaveRequests (UserId, LeaveTypeId, StartDate, EndDate, Reason)
-		VALUES (@UserId, @LeaveTypeId, @StartDate, @EndDate, @Reason) 
+		INSERT INTO LeaveRequests (UserId, LeaveTypeId, StartDate, EndDate, Reason,NumberOfDays)
+		VALUES (@UserId, @LeaveTypeId, @StartDate, @EndDate, @Reason,@NumberOfDays) 
 	 END 
 
   --1.2)show(Apply leaves)
