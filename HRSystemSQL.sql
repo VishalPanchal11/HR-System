@@ -127,6 +127,7 @@ select*from Attendance;
 -------------------------------------------------------------------------------------------------
 --6)Admin Timesheet Management
    select*from Timesheets;
+   select*from [User];
 
   --6.1)Admin timesheet Management approved
         alter procedure Pro_StatusAppr_Timesheets
@@ -144,7 +145,7 @@ select*from Attendance;
 		begin
 		  update Timesheets
 		  set [Status]='Rejected'
-		  WHERE TimesheetId = @TimesheetId;;
+		  WHERE TimesheetId = @TimesheetId;
 		end
 
   --6.3)Admin timesheet show
