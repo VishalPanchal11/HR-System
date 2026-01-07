@@ -1,7 +1,55 @@
+--vishal
 use Pulse360_FinalDb;
-select LeaveTypeId from MasterLeaveTypes;
 select *  from [User];
-select*from [Role];
+--Departments
+select * from Departments;
+CREATE or alter PROC sp_GetDepartments
+    @SortOrder VARCHAR(10) = '',
+    @Status VARCHAR(10) = '',
+    @Search VARCHAR(50) = ''
+AS
+BEGIN
+    SELECT *
+    FROM Departments
+    WHERE
+        (@Status='' OR Status=@Status)
+        AND (@Search='' OR Name LIKE '%'+@Search+'%')
+    ORDER BY
+        CASE WHEN @SortOrder='ASC' THEN Name END ASC,
+        CASE WHEN @SortOrder='DESC' THEN Name END DESC
+END
+
+CREATE PROC sp_SaveDepartment
+    @DepartmentId INT = NULL,
+    @Name VARCHAR(100),
+    @Status VARCHAR(10),
+    @User VARCHAR(50)
+AS
+BEGIN
+    IF @DepartmentId IS NULL OR @DepartmentId = ''
+        INSERT INTO Departments(Name,Status,CreatedBy,CreatedAt)
+        VALUES(@Name,@Status,@User,GETDATE())
+    ELSE
+        UPDATE Departments
+        SET Name=@Name,
+            Status=@Status,
+            ModifiedBy=@User,
+            ModifiedAt=GETDATE()
+        WHERE DepartmentId=@DepartmentId
+END
+
+CREATE PROC sp_DeleteDepartment
+    @DepartmentId INT
+AS
+BEGIN
+    DELETE FROM Departments WHERE DepartmentId=@DepartmentId
+END
+
+
+
+select * from [Role];
+
+select LeaveTypeId from MasterLeaveTypes;
 -- user procs
 -- user triggers
 select * from Trainer;
