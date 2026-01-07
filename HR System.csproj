@@ -188,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Attendance\AddLeave.aspx" />
+    <Content Include="Admin\Employee\AdminProfile.aspx" />
     <Content Include="Employee\Attendance\ApplyLeaves.aspx" />
     <Content Include="Employee\Attendance\employeeattendance.aspx" />
     <Content Include="Employee\Attendance\Leaves.aspx" />
@@ -206,7 +207,6 @@
     <Content Include="Admin\Employee\Departments.aspx" />
     <Content Include="Admin\Employee\Designations.aspx" />
     <Content Include="Admin\Employee\Employees.aspx" />
-    <Content Include="Admin\Employee\Profile.aspx" />
     <Content Include="Admin\Employee\Roles.aspx" />
     <Content Include="Admin\Projects\AddProject.aspx" />
     <Content Include="Admin\Projects\AddTask.aspx" />
@@ -220,7 +220,7 @@
     <Content Include="Employee\Attendance\Attendanceadmin.aspx" />
     <Content Include="Employee\Attendance\DepartmentLeave.aspx" />
     <Content Include="Employee\Documents.aspx" />
-    <Content Include="Employee\Profile.aspx" />
+    <Content Include="Employee\EmployeeProfile.aspx" />
     <Content Include="Manager\LeaveAllocation.aspx" />
     <Content Include="Manager\Timesheets.aspx" />
     <Content Include="Admin\Projects\EditProject.aspx" />
@@ -273,6 +273,13 @@
     </Compile>
     <Compile Include="Admin\Attendance\Timesheet.aspx.designer.cs">
       <DependentUpon>Timesheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Employee\AdminProfile.aspx.cs">
+      <DependentUpon>AdminProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Employee\AdminProfile.aspx.designer.cs">
+      <DependentUpon>AdminProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Promotion\Promotion.aspx.cs">
       <DependentUpon>Promotion.aspx</DependentUpon>
@@ -329,13 +336,6 @@
     </Compile>
     <Compile Include="Admin\Employee\Employees.aspx.designer.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Employee\Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Employee\Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Employee\Roles.aspx.cs">
       <DependentUpon>Roles.aspx</DependentUpon>
@@ -435,12 +435,12 @@
     <Compile Include="Employee\Documents.aspx.designer.cs">
       <DependentUpon>Documents.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Employee\Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
+    <Compile Include="Employee\EmployeeProfile.aspx.cs">
+      <DependentUpon>EmployeeProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Employee\Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
+    <Compile Include="Employee\EmployeeProfile.aspx.designer.cs">
+      <DependentUpon>EmployeeProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager\LeaveAllocation.aspx.cs">
       <DependentUpon>LeaveAllocation.aspx</DependentUpon>

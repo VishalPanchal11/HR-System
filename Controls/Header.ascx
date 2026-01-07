@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true"
-    CodeBehind="Header.ascx.cs"
+    CodeFile="Header.ascx.cs"
     Inherits="HR_System.Controls.Header" %>
 <nav class="navbar navbar-light bg-white border-bottom px-3">
     <div class="d-flex align-items-center gap-3">

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Timesheets.aspx.cs" Inherits="HR_System.Manager.Timesheets" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Timesheets.aspx.cs" Inherits="HR_System.Manager.Timesheets" %>
 
 <!DOCTYPE html>
 

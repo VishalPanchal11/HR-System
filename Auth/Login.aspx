@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"
-    CodeBehind="Login.aspx.cs"
+    CodeFile="Login.aspx.cs"
     Inherits="HR_System.Auth.Login" %>
 
 <!DOCTYPE html>

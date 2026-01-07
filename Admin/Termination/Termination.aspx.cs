@@ -11,13 +11,21 @@ namespace HR_System.Admin.Termination
 
         string SortColumn
         {
-            get { return ViewState["SortColumn"]?.ToString() ?? "ResignDate"; }
+            get
+            {
+                if (ViewState["SortColumn"] == null) return "ResignDate";
+                return ViewState["SortColumn"].ToString();
+            }
             set { ViewState["SortColumn"] = value; }
         }
 
         string SortDirection
         {
-            get { return ViewState["SortDirection"]?.ToString() ?? "DESC"; }
+            get
+            {
+                if (ViewState["SortDirection"] == null) return "DESC";
+                return ViewState["SortDirection"].ToString();
+            }
             set { ViewState["SortDirection"] = value; }
         }
 

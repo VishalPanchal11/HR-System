@@ -11,7 +11,7 @@ namespace HR_System.Masters
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["RoleName"]?.ToString() != "Manager")
+            if (Session["RoleName"] == null || Session["RoleName"].ToString() != "Manager")
             {
                 Response.Redirect("~/Auth/Login.aspx");
             }

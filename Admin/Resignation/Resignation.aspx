@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/AdminMaster.Master"
-    AutoEventWireup="true" CodeBehind="Resignation.aspx.cs"
+    AutoEventWireup="true" CodeFile="Resignation.aspx.cs"
     Inherits="HR_System.Admin.Resignation.Resignation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">

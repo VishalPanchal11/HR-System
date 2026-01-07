@@ -38,11 +38,11 @@ namespace HR_System.Auth
 
                     // Role-based redirect
                     if (Session["RoleName"].ToString() == "Admin")
-                        Response.Redirect("~/Admin/Employee/Profile.aspx");
+                        Response.Redirect("~/Admin/Employee/Departments.aspx");
                     else if (Session["RoleName"].ToString() == "Manager")
                         Response.Redirect("~/Manager/Timesheets.aspx");
                     else if (Session["RoleName"].ToString() == "Employee")
-                        Response.Redirect("~/Employee/Profile.aspx");
+                        Response.Redirect("~/Employee/EmployeeProfile.aspx");
                 }
                 else
                 {

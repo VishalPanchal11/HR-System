@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Promotion" Language="C#" MasterPageFile="~/Masters/AdminMaster.Master" AutoEventWireup="true" CodeBehind="Promotion.aspx.cs" Inherits="HR_System.Admin.Promotion.Promotion" %>
+﻿<%@ Page Title="Promotion" Language="C#" MasterPageFile="~/Masters/AdminMaster.Master" AutoEventWireup="true" CodeFile="Promotion.aspx.cs" Inherits="HR_System.Admin.Promotion.Promotion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="promotion.css" rel="stylesheet" />

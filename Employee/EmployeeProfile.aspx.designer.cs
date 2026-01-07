@@ -11,7 +11,7 @@ namespace HR_System.Employee
 {
 
 
-    public partial class Profile
+    public partial class EmployeeProfile
     {
     }
 }

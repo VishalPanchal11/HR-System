@@ -2,7 +2,7 @@
     Language="C#"
     MasterPageFile="~/Masters/AdminMaster.Master"
     AutoEventWireup="true"
-    CodeBehind="EditProject.aspx.cs"
+    CodeFile="EditProject.aspx.cs"
     Inherits="HR_System.EditProject" %>
 
 <asp:Content ID="Content1"

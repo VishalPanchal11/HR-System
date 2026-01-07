@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true"
-    CodeBehind="EmployeeMaster.master.cs"
+    CodeFile="EmployeeMaster.master.cs"
     Inherits="HR_System.Masters.EmployeeMaster" %>
 
 <%@ Register Src="~/Controls/Header.ascx" TagPrefix="uc" TagName="Header" %>

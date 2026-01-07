@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true"
-    CodeBehind="SideBar.ascx.cs"
+    CodeFile="SideBar.ascx.cs"
     Inherits="HR_System.Controls.SideBar" %>
 
 <asp:Panel ID="pnlSidebar"
@@ -40,7 +40,7 @@
             <a href="/Admin/Employee/Roles.aspx" class="d-block py-1 text-dark text-decoration-none">Roles</a>
             <a href="/Admin/Employee/Employees.aspx" class="d-block py-1 text-dark text-decoration-none">Employees</a>
             <a href="/Admin/Employee/EmployeesGrid.aspx" class="d-block py-1 text-dark text-decoration-none">Employees Grid</a>
-            <a href="/Admin/Employee/Profile.aspx" class="d-block py-1 text-dark text-decoration-none">Profile</a>
+            <a href="/Admin/Employee/AdminProfile.aspx" class="d-block py-1 text-dark text-decoration-none">Profile</a>
         </div>
 
         <!-- DOCUMENTS -->
@@ -142,7 +142,7 @@
     <!-- ================= EMPLOYEE ================= -->
     <asp:Panel ID="pnlEmployee" runat="server" Visible="false">
 
-        <a href="/Employee/Profile.aspx" class="d-block px-3 py-2 fw-semibold text-dark text-decoration-none">Profile</a>
+        <a href="/Employee/EmployeeProfile.aspx" class="d-block px-3 py-2 fw-semibold text-dark text-decoration-none">Profile</a>
 
         <button type="button" class="menu-btn w-100 d-flex justify-content-between align-items-center px-3 py-2 fw-semibold border-0 bg-transparent rounded mt-2"
                 data-bs-toggle="collapse" data-bs-target="#empAttendance" onclick="onMenuToggle(this)">

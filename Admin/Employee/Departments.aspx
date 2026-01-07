@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"
-    CodeBehind="Departments.aspx.cs"
+    CodeFile="Departments.aspx.cs"
     Inherits="HR_System.Admin.Employee.Departments"
     MasterPageFile="~/Masters/AdminMaster.master" %>
 
@@ -199,33 +199,29 @@
 </div>
 
 <script>
-    function clearDeptModal() {
-        document.getElementById('<%= hfDeptId.ClientID %>').value = '';
-        document.getElementById('<%= txtDeptName.ClientID %>').value = '';
-        document.getElementById('<%= ddlDeptStatus.ClientID %>').value = '';
-        document.getElementById('modalTitle').innerText = 'Add Department';
+    // OPEN modal
+    function openDeptModal(title) {
+        $('#modalTitle').text(title);
+        $('#deptModal').modal('show');
     }
 
-            function closeDeptModalJQ() {
-                // Hide modal
-                $('#deptModal').modal('hide');
+    // CLOSE modal
+    function closeDeptModal() {
+        $('#deptModal').modal('hide');
 
-                // Remove backdrop
-                $('.modal-backdrop').remove();
+        // cleanup (important for UpdatePanel)
+        $('.modal-backdrop').remove();
+        $('body').removeClass('modal-open').css('padding-right', '');
+    }
 
-                // Enable body scrolling
-                $('body').removeClass('modal-open');
-                $('body').css('padding-right', '');
-            }
-
-            function clearDeptModal() {
-                $('#<%= hfDeptId.ClientID %>').val('');
+    // CLEAR modal for ADD
+    function clearDeptModal() {
+        $('#<%= hfDeptId.ClientID %>').val('');
         $('#<%= txtDeptName.ClientID %>').val('');
         $('#<%= ddlDeptStatus.ClientID %>').val('');
-                $('#modalTitle').text('Add Department');
-            }
-        </script>
-
+        $('#modalTitle').text('Add Department');
+    }
+</script>
 
 
     </ContentTemplate>

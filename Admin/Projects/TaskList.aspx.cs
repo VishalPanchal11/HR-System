@@ -15,7 +15,11 @@ namespace HR_System
         
         private string SelectedPriority
         {
-            get { return ViewState["SelectedPriority"]?.ToString() ?? "All"; }
+            get
+            {
+                if (ViewState["SelectedPriority"] == null) return "All";
+                return ViewState["SelectedPriority"].ToString();
+            }
             set { ViewState["SelectedPriority"] = value; }
         }
 

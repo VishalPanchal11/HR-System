@@ -16,15 +16,15 @@ namespace HR_System.Controls
 
             if (role == "Admin")
             {
-                lnkProfile.NavigateUrl = "~/Admin/Employee/Profile.aspx";
+                lnkProfile.NavigateUrl = "~/Admin/Employee/AdminProfile.aspx";
             }
             else if (role == "Manager")
             {
-                lnkProfile.NavigateUrl = "~/Manager/Profile.aspx";
+                lnkProfile.NavigateUrl = "#";
             }
             else if (role == "Employee")
             {
-                lnkProfile.NavigateUrl = "~/Employee/Profile.aspx";
+                lnkProfile.NavigateUrl = "~/Employee/EmployeeProfile.aspx";
             }
         }
     }

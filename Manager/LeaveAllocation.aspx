@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/ManagerMaster.Master" AutoEventWireup="true" CodeBehind="LeaveAllocation.aspx.cs" Inherits="HR_System.Manager.LeaveAllocation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/ManagerMaster.Master" AutoEventWireup="true" CodeFile="LeaveAllocation.aspx.cs" Inherits="HR_System.Manager.LeaveAllocation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <!DOCTYPE html>

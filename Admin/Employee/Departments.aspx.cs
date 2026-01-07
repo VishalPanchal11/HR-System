@@ -5,9 +5,6 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using OfficeOpenXml; // EPPlus
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 namespace HR_System.Admin.Employee
 {
@@ -17,8 +14,15 @@ namespace HR_System.Admin.Employee
 
         string SortDir
         {
-            get => ViewState["SortDir"]?.ToString() ?? "ASC";
-            set => ViewState["SortDir"] = value;
+            get
+            {
+                if (ViewState["SortDir"] == null) return "ASC";
+                return ViewState["SortDir"].ToString();
+            }
+            set
+            {
+                ViewState["SortDir"] = value;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -120,7 +124,13 @@ namespace HR_System.Admin.Employee
                 cmd.ExecuteNonQuery();
             }
             BindGrid();
-            ScriptManager.RegisterStartupScript(this, GetType(), "CloseDeptModal", "closeDeptModalJQ();", true);
+            ScriptManager.RegisterStartupScript(
+                this,
+                GetType(),
+                "CloseDeptModal",
+                "closeDeptModal();",
+                true
+            );
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -144,8 +154,16 @@ namespace HR_System.Admin.Employee
                 }
             }
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "EditModal",
-                "new bootstrap.Modal(document.getElementById('deptModal')).show();", true);
+            
+
+            ScriptManager.RegisterStartupScript(
+    this,
+    GetType(),
+    "EditModal",
+    "openDeptModal('Edit Department');",
+    true
+);
+
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)

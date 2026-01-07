@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"
     MasterPageFile="~/Masters/AdminMaster.master"
-    CodeBehind="TaskList.aspx.cs"
+    CodeFile="TaskList.aspx.cs"
     Inherits="HR_System.TaskList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
