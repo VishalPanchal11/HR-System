@@ -770,7 +770,7 @@ WHERE TABLE_NAME = 'Promotion';
 DROP TABLE IF EXISTS Promotion;
 GO
 
-DROP TABLE IF EXISTS Promotion1;
+DROP TABLE IF EXISTS Promotion;
 
 create TABLE Promotion
 (
@@ -891,6 +891,13 @@ AS
 BEGIN
     SELECT * FROM Promotion WHERE PromotionID = @PromotionID;
 END
+
+SELECT COLUMN_NAME
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'Promotion';
+SELECT COLUMN_NAME
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'Employee';
 
 --------Termination-----------
 --TerminationId(PK,INT,not null)
