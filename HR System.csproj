@@ -68,8 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Attendance\AddLeave.aspx" />
-    <Content Include="Employee\Attendance\employeeattendance.aspx" />
-     <Content Include="Employee\Attendance\Leaves.aspx" />
+    <Content Include="Employee\Attendance\ApplyLeaves.aspx" />
     <Content Include="Admin\Attendance\Attendance.aspx" />
     <Content Include="Admin\Attendance\AttendanceAdmin.aspx" />
     <Content Include="Admin\Attendance\DepartmentLeaveShow.aspx" />
@@ -91,14 +90,16 @@
     <Content Include="Auth\Logout.aspx" />
     <Content Include="Controls\Header.ascx" />
     <Content Include="Controls\SideBar.ascx" />
+    <Content Include="Employee\Attendance\Attendanceadmin.aspx" />
+    <Content Include="Employee\Attendance\DepartmentLeave.aspx" />
     <Content Include="Employee\Documents.aspx" />
     <Content Include="Employee\Profile.aspx" />
+    <Content Include="Manager\LeaveAllocation.aspx" />
     <Content Include="Manager\Timesheets.aspx" />
     <Content Include="Admin\Projects\EditProject.aspx" />
     <Content Include="Admin\Projects\Project.aspx" />
     <Content Include="Admin\Projects\ProjectList.aspx" />
     <Content Include="Admin\Projects\TaskList.aspx" />
-
     <Content Include="Styles\site.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -257,6 +258,27 @@
     <Compile Include="Controls\SideBar.ascx.designer.cs">
       <DependentUpon>SideBar.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Employee\Attendance\ApplyLeaves.aspx.cs">
+      <DependentUpon>ApplyLeaves.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Attendance\ApplyLeaves.aspx.designer.cs">
+      <DependentUpon>ApplyLeaves.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Attendance\Attendanceadmin.aspx.cs">
+      <DependentUpon>Attendanceadmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Attendance\Attendanceadmin.aspx.designer.cs">
+      <DependentUpon>Attendanceadmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\Attendance\DepartmentLeave.aspx.cs">
+      <DependentUpon>DepartmentLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\Attendance\DepartmentLeave.aspx.designer.cs">
+      <DependentUpon>DepartmentLeave.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Employee\Documents.aspx.cs">
       <DependentUpon>Documents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -270,6 +292,13 @@
     </Compile>
     <Compile Include="Employee\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\LeaveAllocation.aspx.cs">
+      <DependentUpon>LeaveAllocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager\LeaveAllocation.aspx.designer.cs">
+      <DependentUpon>LeaveAllocation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager\Timesheets.aspx.cs">
       <DependentUpon>Timesheets.aspx</DependentUpon>
@@ -306,24 +335,6 @@
     <Compile Include="Masters\ManagerMaster.Master.designer.cs">
       <DependentUpon>ManagerMaster.Master</DependentUpon>
     </Compile>
-
-
-<Compile Include="Employee\Attendance\employeeattendance.aspx.cs">
-  <DependentUpon>employeeattendance.aspx</DependentUpon>
-  <SubType>ASPXCodeBehind</SubType>
-</Compile>
-<Compile Include="Employee\Attendance\employeeattendance.aspx.designer.cs">
-  <DependentUpon>employeeattendance.aspx</DependentUpon>
-</Compile>
-
-<Compile Include="Employee\Attendance\Leaves.aspx.cs">
-  <DependentUpon>Leaves.aspx</DependentUpon>
-  <SubType>ASPXCodeBehind</SubType>
-</Compile>
-<Compile Include="Employee\Attendance\Leaves.aspx.designer.cs">
-  <DependentUpon>Leaves.aspx</DependentUpon>
-</Compile>
-
     <Compile Include="Admin\Projects\Project.aspx.cs">
       <DependentUpon>Project.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -7,30 +7,39 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HR_System.Attendance
+namespace HR_System.Employee.Attendance
 {
 
 
-    public partial class Leaves
+    public partial class ApplyLeaves
     {
 
         /// <summary>
-        /// gvLeaves control.
+        /// rptSummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvLeaves;
+        protected global::System.Web.UI.WebControls.Repeater rptSummary;
 
         /// <summary>
-        /// EmpLeavesShowDB control.
+        /// gvLeaveRequests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource EmpLeavesShowDB;
+        protected global::System.Web.UI.WebControls.GridView gvLeaveRequests;
+
+        /// <summary>
+        /// LeavetypeDB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource LeavetypeDB;
 
         /// <summary>
         /// ddlLeaveType control.
@@ -67,6 +76,15 @@ namespace HR_System.Attendance
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtReason;
+
+        /// <summary>
+        /// NOOFDAYS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NOOFDAYS;
 
         /// <summary>
         /// btnApply control.
